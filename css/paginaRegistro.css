@@ -2,7 +2,8 @@
 
 header {
 	background-color: LightSeaGreen;
-	width: 1400px, auto;
+	width: 100%;
+	box-sizing: border-box;
 	box-shadow: 0 2px 10px rgba(0,0,0.08);
 	display: flex;
     justify-content: space-between;
@@ -225,4 +226,67 @@ footer{
     margin-top:40px;
     padding-top:20px;
     border-top:1px solid rgba(0,0,0,.2);
+}
+
+
+/* Ajustes responsive para celulares */
+
+@media (max-width: 600px) {
+
+    /* Encabezado */
+
+    header {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 12px;
+    }
+
+    .logo {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    header img {
+        width: 40px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav img {
+        width: 30px;
+    }
+
+    /* Mensaje del carrito */
+
+    #mensajeCarritoHeader {
+        left: 10px;
+        right: 10px;
+        top: 80px;
+        box-sizing: border-box;
+    }
+
+    /* Pie de página */
+
+    footer {
+        width: 100%;
+        padding: 28px 16px;
+        box-sizing: border-box;
+    }
+
+    .footer-contenido {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .copyright {
+        margin-top: 24px;
+    }
 }

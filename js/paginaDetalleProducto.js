@@ -1,12 +1,17 @@
-// ============================================
-// DATOS DE LOS PRODUCTOS
-// ============================================
+
+/* ==========================================
+   DATOS DE LOS 12 PRODUCTOS
+========================================== */
 
 const productos = {
     "nike-airmax270": {
         nombre: "Nike Air Max 270",
         precio: "$6.590",
-        imagen: "../img/productos/nike-airmax270.jpg",
+        imagenes: [
+            "../img/productos/nike-airmax270.jpg",
+            "../img/productos/nike-airmax270-lado.jpg",
+            "../img/productos/nike-airmax270-suela.jpg"
+        ],
         descripcion: "Las Nike Air Max 270 combinan comodidad, estilo y tecnología Air para el uso diario.",
         descripcionCompleta: "Las Nike Air Max 270 destacan por su diseño moderno y su unidad Air Max ubicada en el talón.",
         caracteristicas: [
@@ -21,74 +26,118 @@ const productos = {
     "nike-revolution-7": {
         nombre: "Nike Revolution 7",
         precio: "$4.390",
-        imagen: "../img/productos/nike-revolution-7.jpg"
+        imagenes: [
+            "../img/productos/nike-revolution-7.jpg",
+            "../img/productos/nike-revolution-7-lado.jpg",
+            "../img/productos/nike-revolution-7-suela.jpg"
+        ]
     },
 
     "nike-pegasus-41": {
         nombre: "Nike Pegasus 41",
         precio: "$7.990",
-        imagen: "../img/productos/nike-pegasus-41.jpg"
+        imagenes: [
+            "../img/productos/nike-pegasus-41.jpg",
+            "../img/productos/nike-pegasus-41-lado.jpg",
+            "../img/productos/nike-pegasus-41-suela.jpg"
+        ]
     },
 
     "adidas-ultraboost-light": {
         nombre: "Adidas Ultraboost Light",
         precio: "$8.490",
-        imagen: "../img/productos/adidas-ultraboost-light.jpg"
+        imagenes: [
+            "../img/productos/adidas-ultraboost-light.jpg",
+            "../img/productos/adidas-ultraboost-light-lado.jpg",
+            "../img/productos/adidas-ultraboost-light-suela.jpg"
+        ]
     },
 
     "adidas-duramo-sl": {
         nombre: "Adidas Duramo SL",
         precio: "$4.290",
-        imagen: "../img/productos/adidas-duramo-sl.jpg"
+        imagenes: [
+            "../img/productos/adidas-duramo-sl.jpg",
+            "../img/productos/adidas-duramo-sl-lado.jpg",
+            "../img/productos/adidas-duramo-sl-suela.jpg"
+        ]
     },
 
     "adidas-runfalcon-5": {
         nombre: "Adidas Runfalcon 5",
         precio: "$4.990",
-        imagen: "../img/productos/adidas-runfalcon-5.jpg"
+        imagenes: [
+            "../img/productos/adidas-runfalcon-5.jpg",
+            "../img/productos/adidas-runfalcon-5-suela-lado.jpg",
+            "../img/productos/adidas-runfalcon-5-suela.jpg"
+        ]
     },
 
     "puma-rs-x-bw": {
         nombre: "Puma RS-X B&W",
         precio: "$5.290",
-        imagen: "../img/productos/puma_rs-x_b&w.jpg"
+        imagenes: [
+            "../img/productos/puma_rs-x_b&w.jpg",
+            "../img/productos/puma_rs-x_b&w-lado.jpg",
+            "../img/productos/puma_rs-x_b&w-suela.jpg"
+        ]
     },
 
     "puma-caven-2": {
         nombre: "Puma Caven 2.0",
         precio: "$4.690",
-        imagen: "../img/productos/puma-caven-2.0.jpg"
+        imagenes: [
+            "../img/productos/puma-caven-2.0.jpg",
+            "../img/productos/puma-caven-2.0-lado.jpg",
+            "../img/productos/puma-caven-2.0-suela.jpg"
+        ]
     },
 
     "puma-velocity-nitro": {
         nombre: "Puma Velocity Nitro",
         precio: "$7.590",
-        imagen: "../img/productos/puma-velocity-nitro.jpg"
+        imagenes: [
+            "../img/productos/puma-velocity-nitro.jpg",
+            "../img/productos/puma-velocity-nitro-lado.jpg",
+            "../img/productos/puma-velocity-nitro-suela.jpg"
+        ]
     },
 
     "new-balance-574": {
         nombre: "New Balance 574",
         precio: "$5.990",
-        imagen: "../img/productos/new-balance-574.jpg"
+        imagenes: [
+            "../img/productos/new-balance-574.jpg",
+            "../img/productos/new-balance-574-lado.jpg",
+            "../img/productos/new-balance-574-suela.jpg"
+        ]
     },
 
     "new-balance-530": {
         nombre: "New Balance 530",
         precio: "$6.490",
-        imagen: "../img/productos/new-balance-530.jpg"
+        imagenes: [
+            "../img/productos/new-balance-530.jpg",
+            "../img/productos/new-balance-530-lado.jpg",
+            "../img/productos/new-balance-530-suela.jpg"
+        ]
     },
 
     "new-balance-fresh-foam-x": {
         nombre: "New Balance Fresh Foam X",
         precio: "$8.290",
-        imagen: "../img/productos/new-balance-fresh-foam-x.jpg"
+        imagenes: [
+            "../img/productos/new-balance-fresh-foam-x.jpg",
+            "../img/productos/new-balance-fresh-foam-x-lado.jpg",
+            "../img/productos/new-balance-fresh-foam-x-suela.jpg"
+        ]
     }
 };
 
 
-// ============================================
-// SELECCIONAR LOS ELEMENTOS DEL HTML
-// ============================================
+/* ==========================================
+   ELEMENTOS DEL HTML
+========================================== */
 
 const imagenPrincipal = document.querySelector(".imagen-principal");
 const miniaturas = document.querySelectorAll(".miniatura");
@@ -114,27 +163,28 @@ const carrito = document.querySelector("#carritoHeader");
 const mensajeHeader = document.querySelector("#mensajeCarritoHeader");
 
 
-// ============================================
-// OBTENER EL PRODUCTO DE LA DIRECCIÓN
-// ============================================
+/* ==========================================
+   IDENTIFICAR EL PRODUCTO SELECCIONADO
+========================================== */
 
 const parametrosURL = new URLSearchParams(window.location.search);
-
 const identificadorProducto = parametrosURL.get("producto");
-
 const productoSeleccionado = productos[identificadorProducto];
 
 
-// ============================================
-// MOSTRAR LOS DATOS DEL PRODUCTO
-// ============================================
+/* ==========================================
+   MOSTRAR LOS DATOS Y LAS IMÁGENES
+========================================== */
 
-if (productoSeleccionado) {
+if (!productoSeleccionado) {
+    alert("No se encontró el producto seleccionado.");
+    window.location.href = "paginaListadoProductos.html";
+} else {
 
     tituloProducto.textContent = productoSeleccionado.nombre;
     precioProducto.textContent = productoSeleccionado.precio;
 
-    imagenPrincipal.src = productoSeleccionado.imagen;
+    imagenPrincipal.src = productoSeleccionado.imagenes[0];
     imagenPrincipal.alt = productoSeleccionado.nombre;
 
     document.title = productoSeleccionado.nombre + " | Zora";
@@ -142,18 +192,18 @@ if (productoSeleccionado) {
     descripcionProducto.textContent =
         productoSeleccionado.descripcion ||
         productoSeleccionado.nombre +
-        " es uno de los modelos disponibles en Zora. Consultá la disponibilidad de talles antes de comprar.";
+        " es uno de los modelos disponibles en Zora. Consultá su disponibilidad y elegí tu talle.";
 
     descripcionCompleta.textContent =
         productoSeleccionado.descripcionCompleta ||
         "Conocé el modelo " + productoSeleccionado.nombre +
-        " y elegí el calzado que mejor se adapte a tus necesidades.";
+        " y descubrí si es el calzado que estás buscando.";
 
     const caracteristicas =
         productoSeleccionado.caracteristicas || [
             "Diseño deportivo.",
             "Modelo disponible en Zora.",
-            "Seleccioná tu talle antes de comprar."
+            "Consultá la disponibilidad de talles."
         ];
 
     listaCaracteristicas.innerHTML = "";
@@ -166,107 +216,102 @@ if (productoSeleccionado) {
         listaCaracteristicas.appendChild(elemento);
     });
 
-    // La galería de tres imágenes solo existe para Nike Air Max 270.
+    contenedorMiniaturas.style.display = "flex";
 
-    if (identificadorProducto === "nike-airmax270") {
+    miniaturas.forEach((miniatura, indice) => {
 
-        miniaturas.forEach((miniatura) => {
+        const imagen = productoSeleccionado.imagenes[indice];
+
+        if (imagen) {
+
+            miniatura.src = imagen;
+
+            if (indice === 0) {
+                miniatura.alt =
+                    productoSeleccionado.nombre + " - vista principal";
+            } else if (indice === 1) {
+                miniatura.alt =
+                    productoSeleccionado.nombre + " - vista lateral";
+            } else {
+                miniatura.alt =
+                    productoSeleccionado.nombre + " - vista de la suela";
+            }
+
+            miniatura.style.display = "block";
             miniatura.classList.remove("activa");
-        });
+			
+			if (indice === 0) {
+                miniatura.classList.add("activa");
+            }
 
-        if (miniaturas.length > 0) {
-            miniaturas[0].classList.add("activa");
+        } else {
+            miniatura.style.display = "none";
+        }
+    });
+
+    miniaturas.forEach((miniatura) => {
+
+        miniatura.addEventListener("click", () => {
+
+            if (miniatura.style.display === "none") {
+                return;
+            }
+
+            imagenPrincipal.src = miniatura.src;
+            imagenPrincipal.alt = miniatura.alt;
+
+            miniaturas.forEach((imagen) => {
+                imagen.classList.remove("activa");
+            });
+
+            miniatura.classList.add("activa");
+        });
+    });
+
+    talles.forEach((talle) => {
+
+        talle.addEventListener("click", () => {
+
+            talles.forEach((boton) => {
+                boton.classList.remove("activo");
+            });
+
+            talle.classList.add("activo");
+        });
+    });
+
+    botonCarrito.addEventListener("click", () => {
+
+        const talleSeleccionado = document.querySelector(".talle.activo");
+
+        if (!talleSeleccionado) {
+
+            mensaje.style.color = "red";
+            mensaje.textContent =
+                "⚠ Seleccioná un talle antes de agregar el producto.";
+            mensaje.style.opacity = 1;
+
+            return;
         }
 
-    } else {
-
-        contenedorMiniaturas.style.display = "none";
-    }
-
-} else {
-
-    // Si no hay un identificador válido, volvemos al catálogo.
-
-    alert("No se encontró el producto seleccionado.");
-
-    window.location.href = "paginaListadoProductos.html";
-}
-
-
-// ============================================
-// CAMBIAR LA IMAGEN PRINCIPAL
-// ============================================
-
-miniaturas.forEach((miniatura) => {
-
-    miniatura.addEventListener("click", () => {
-
-        imagenPrincipal.src = miniatura.src;
-
-        miniaturas.forEach((imagen) => {
-            imagen.classList.remove("activa");
-        });
-
-        miniatura.classList.add("activa");
-    });
-});
-
-
-// ============================================
-// SELECCIONAR UN TALLE
-// ============================================
-
-talles.forEach((talle) => {
-
-    talle.addEventListener("click", () => {
-
-        talles.forEach((boton) => {
-            boton.classList.remove("activo");
-        });
-
-        talle.classList.add("activo");
-    });
-});
-
-
-// ============================================
-// BOTÓN AGREGAR AL CARRITO
-// ============================================
-
-botonCarrito.addEventListener("click", () => {
-
-    const talleSeleccionado = document.querySelector(".talle.activo");
-
-    if (!talleSeleccionado) {
-
-        mensaje.style.color = "red";
+        mensaje.style.color = "green";
 
         mensaje.textContent =
-            "⚠ Seleccioná un talle antes de agregar el producto.";
+            "✔ " + productoSeleccionado.nombre +
+            " - Talle " + talleSeleccionado.textContent +
+            " agregado al carrito.";
 
         mensaje.style.opacity = 1;
 
-        return;
-    }
+        setTimeout(() => {
+            mensaje.style.opacity = 0;
+        }, 3000);
+    });
+}
 
-    mensaje.style.color = "green";
-
-    mensaje.textContent =
-        "✔ " + productoSeleccionado.nombre +
-        " - Talle " + talleSeleccionado.textContent +
-        " agregado al carrito.";
-
-    mensaje.style.opacity = 1;
-
-    setTimeout(() => {
-        mensaje.style.opacity = 0;
-    }, 3000);
-});
-
-
-// ============================================
-// MENSAJE DEL CARRITO DEL ENCABEZADO
-// ============================================
+/* ==========================================
+   MENSAJE DEL CARRITO DEL ENCABEZADO
+========================================== */
 
 carrito.addEventListener("click", (evento) => {
 
