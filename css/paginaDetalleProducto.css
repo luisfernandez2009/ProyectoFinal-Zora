@@ -277,3 +277,14 @@ footer{
         width:100%;
     }
 }
+
+.descripcion-completa {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+}
+
+.descripcion-completa ul {
+    padding-left: 25px;
+}
