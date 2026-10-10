@@ -446,7 +446,7 @@ html{
         max-width: 100%;
         box-sizing: border-box;
     }
-}
+
     /* Mensaje del carrito */
 
     #mensajeCarritoHeader {
@@ -454,6 +454,7 @@ html{
         right: 10px;
         top: 80px;
         box-sizing: border-box;
+		pointer-events: none;
     }
 
     /* Pie de página */
