@@ -419,7 +419,34 @@ html{
     nav img {
         width: 30px;
     }
+	
+	.contenedor-banner {
+        overflow: hidden;
+    }
 
+    .texto-banner {
+        left: 5%;
+        max-width: 90%;
+    }
+
+    .texto-banner h1 {
+        font-size: clamp(16px, 4.5vw, 28px);
+        margin: 0 0 6px;
+    }
+
+    .texto-banner p {
+        font-size: clamp(11px, 2.8vw, 17px);
+        margin: 4px 0;
+    }
+
+    .texto-banner a {
+        font-size: clamp(10px, 2.5vw, 14px);
+        padding: 7px 12px;
+        margin-top: 6px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
     /* Mensaje del carrito */
 
     #mensajeCarritoHeader {
