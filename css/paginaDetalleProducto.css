@@ -41,7 +41,7 @@ body {
 
 h2 {
 	font-family: 'Yuyu', Arial, sans-serif;
-	font-weight: 400, bold;
+	font-weight: 700;
 }
 
 .logo {
@@ -74,7 +74,7 @@ header img {
     margin:30px;
     text-decoration:none;
     color:teal;
-    font-weight:bold;
+    font-weight: 700;
     transition:0.3s;
 }
 
@@ -107,7 +107,7 @@ header img {
 
 .precio{
     font-size:36px;
-    font-weight:bold;
+    font-weight: 700;
     color:teal;
     margin:20px 0;
 }
@@ -125,7 +125,7 @@ header img {
 
 .stock{
     color:green;
-    font-weight:bold;
+    font-weight: 700;
     margin-bottom:25px;
 }
 
@@ -152,7 +152,7 @@ header img {
 
 #mensajeCarrito{
     margin-top:20px;
-    font-weight:bold;
+    font-weight: 700;
     color:green;
     opacity:0;
     transition:.3s;

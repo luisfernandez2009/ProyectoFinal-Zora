@@ -41,7 +41,7 @@ body {
 
 h2 {
 	font-family: 'Yuyu', Arial, sans-serif;
-	font-weight: 400, bold;
+	font-weight: 700;
 }
 
 .logo {
@@ -118,13 +118,13 @@ nav img {
 
 .texto-banner h1{
 	font-family: 'Yuyu', Arial, sans-serif;
-	font-weight: 400, bold;
+	font-weight: 700;
     font-size:55px;
 }
 
 .texto-banner p{
 	font-family: 'Yuyu', Arial, sans-serif;
-	font-weight: 400, bold;
+	font-weight: 700;
     font-size:40px;
 }
 

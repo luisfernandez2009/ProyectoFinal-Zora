@@ -4,14 +4,14 @@ ProyectoFinal-Página
 ├── paginas
 │   ├── paginaListadoProductos.html
 │   ├── paginaDetalleProducto.html
-│   ├── paginasRegistro.html
+│   ├── paginaRegistro.html
 │   └── paginaInicioSesion.html
 |
 ├── css
 │   ├── paginaInicio.css
 │   ├── paginaListadoProductos.css
 │   ├── paginaDetalleProducto.css
-│   ├── paginasRegistro.css
+│   ├── paginaRegistro.css
 │   └── paginaInicioSesion.css
 │
 ├── js
