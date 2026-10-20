@@ -22,3 +22,4 @@ const observador = new IntersectionObserver((entradas) => {
 elementos.forEach((elemento)=>{
     observador.observe(elemento);
 });
+
