@@ -1,115 +1,88 @@
 <?php
-/**
- * models/ProductoModel.php
- * -------------------------------------------------------
- * Este es el MODELO de Producto.
- * Su única responsabilidad es hablar con la base de datos
- * sobre las tablas "producto" y "categoria". No sabe nada
- * de HTML ni de formularios: solo busca datos y los
- * devuelve como arrays.
- * -------------------------------------------------------
- */
+declare(strict_types=1);
 
+/** El modelo contiene únicamente consultas a la base de datos. */
 class ProductoModel
 {
-    private $conexion;
+    private mysqli $conexion;
 
-    public function __construct($conexion)
+    public function __construct(mysqli $conexion) { $this->conexion = $conexion; }
+
+    public function listarProductos($idCategoriaFiltro = null, ?string $busqueda = null, ?int $limite = null): array
     {
-        $this->conexion = $conexion;
+        $sql = "SELECT p.id, p.nombre, p.marca, p.descripcion, p.precio, p.imagen,
+                       p.categoria_id, c.nombre AS nombre_categoria
+                FROM producto p
+                INNER JOIN categoria c ON c.id = p.categoria_id
+                WHERE p.activo = 1";
+        $tipos = '';
+        $params = [];
+        if (filter_var($idCategoriaFiltro, FILTER_VALIDATE_INT) && (int)$idCategoriaFiltro > 0) {
+            $sql .= " AND p.categoria_id = ?";
+            $tipos .= 'i'; $params[] = (int)$idCategoriaFiltro;
+        }
+        if ($busqueda !== null && trim($busqueda) !== '') {
+            $sql .= " AND (p.nombre LIKE ? OR p.marca LIKE ? OR p.descripcion LIKE ?)";
+            $like = '%' . trim($busqueda) . '%';
+            $tipos .= 'sss'; array_push($params, $like, $like, $like);
+        }
+        $sql .= " ORDER BY p.nombre ASC";
+        if ($limite !== null && $limite > 0) $sql .= " LIMIT " . (int)$limite;
+        $stmt = $this->conexion->prepare($sql);
+        if ($tipos !== '') $stmt->bind_param($tipos, ...$params);
+        $stmt->execute();
+        $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $rows;
     }
 
-    /**
-     * Devuelve todos los productos, con el nombre de su categoría
-     * ya incluido (mediante un JOIN). Si se indica una categoría,
-     * filtra solo los productos de esa categoría.
-     */
-    public function listarProductos($idCategoriaFiltro = null)
+    public function obtenerProductoPorId(int $idProducto): ?array
     {
-        $consultaSql = "
-            SELECT
-                producto.id,
-                producto.nombre,
-                producto.marca,
-				producto.precio,
-                producto.descripcion,
-                producto.imagen,
-                producto.categoria_id,
-				producto.activo,
-                categoria.id,
-                categoria.nombre AS nombre_categoria
-            FROM producto
-            INNER JOIN categoria ON producto.categoria_id = categoria.id
-        ";
-
-        if (!empty($idCategoriaFiltro)) {
-            $consultaSql .= " WHERE producto.categoria_id = ?";
-        }
-
-        $consultaSql .= " ORDER BY producto.nombre ASC";
-
-        $consultaPreparada = mysqli_prepare($this->conexion, $consultaSql);
-
-        if (!empty($idCategoriaFiltro)) {
-            mysqli_stmt_bind_param($consultaPreparada, "i", $idCategoriaFiltro);
-        }
-
-        mysqli_stmt_execute($consultaPreparada);
-        $resultado = mysqli_stmt_get_result($consultaPreparada);
-
-        $listaDeProductos = [];
-        while ($filaProducto = mysqli_fetch_assoc($resultado)) {
-            $listaDeProductos[] = $filaProducto;
-        }
-
-        return $listaDeProductos;
+        $stmt = $this->conexion->prepare(
+            "SELECT p.id, p.nombre, p.marca, p.descripcion, p.precio, p.imagen,
+                    p.categoria_id, c.nombre AS nombre_categoria
+             FROM producto p INNER JOIN categoria c ON c.id = p.categoria_id
+             WHERE p.id = ? AND p.activo = 1 LIMIT 1"
+        );
+        $stmt->bind_param('i', $idProducto);
+        $stmt->execute();
+        $producto = $stmt->get_result()->fetch_assoc() ?: null;
+        $stmt->close();
+        return $producto;
     }
 
-    /**
-     * Devuelve un único producto según su id.
-     * Se usa, por ejemplo, para recalcular precios al confirmar un pedido.
-     */
-    public function obtenerProductoPorId($idProducto)
+    public function listarCategorias(): array
     {
-        // Usamos el mismo JOIN que en listarProductos() para tener
-        // también el nombre de la categoría, no solo su id
-        $consultaSql = "
-            SELECT
-                producto.id,
-                producto.nombre,
-				producto.marca,
-				producto.precio,
-                producto.descripcion,
-                producto.imagen,
-                producto.categoria_id,
-                producto.activo,
-                categoria.categoria_id,
-                categoria.nombre AS nombre_categoria
-            FROM producto
-            INNER JOIN categoria ON producto.id_categoria = categoria.id_categoria
-            WHERE producto.id_producto = ?
-        ";
-        $consultaPreparada = mysqli_prepare($this->conexion, $consultaSql);
-        mysqli_stmt_bind_param($consultaPreparada, "i", $idProducto);
-        mysqli_stmt_execute($consultaPreparada);
-        $resultado = mysqli_stmt_get_result($consultaPreparada);
-
-        return mysqli_fetch_assoc($resultado); // devuelve el array del producto, o null si no existe
+        $resultado = $this->conexion->query("SELECT id, nombre FROM categoria ORDER BY nombre");
+        return $resultado->fetch_all(MYSQLI_ASSOC);
     }
 
-    /**
-     * Devuelve todas las categorías (para armar el filtro del catálogo).
-     */
-    public function listarCategorias()
+    public function listarImagenes(int $idProducto, ?string $principal): array
     {
-        $consultaSql = "SELECT id_categoria, nombre FROM categoria ORDER BY nombre ASC";
-        $resultado = mysqli_query($this->conexion, $consultaSql);
+        $imagenes = $principal ? [$principal] : [];
+        try {
+            $stmt = $this->conexion->prepare("SELECT ruta FROM producto_imagen WHERE producto_id = ? ORDER BY orden, id");
+            $stmt->bind_param('i', $idProducto);
+            $stmt->execute();
+            foreach ($stmt->get_result()->fetch_all(MYSQLI_ASSOC) as $fila) {
+                if (!in_array($fila['ruta'], $imagenes, true)) $imagenes[] = $fila['ruta'];
+            }
+            $stmt->close();
+        } catch (Throwable $e) { /* La imagen principal sigue disponible aunque no haya galería. */ }
+        return $imagenes;
+    }
 
-        $listaDeCategorias = [];
-        while ($filaCategoria = mysqli_fetch_assoc($resultado)) {
-            $listaDeCategorias[] = $filaCategoria;
-        }
-
-        return $listaDeCategorias;
+    public function listarTallesConStock(int $idProducto): array
+    {
+        $stmt = $this->conexion->prepare(
+            "SELECT t.id, t.numero, pt.stock
+             FROM producto_talle pt INNER JOIN talles t ON t.id = pt.talle_id
+             WHERE pt.producto_id = ? AND pt.stock > 0 ORDER BY t.numero"
+        );
+        $stmt->bind_param('i', $idProducto);
+        $stmt->execute();
+        $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $rows;
     }
 }
