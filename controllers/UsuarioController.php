@@ -71,7 +71,7 @@ class UsuarioController
         $password = (string)($_POST['password'] ?? '');
         if (!$this->correoPermitido($correo)) {
             $_SESSION['error_formulario'] = 'Ingresá un correo válido que termine en @gmail.com o @hotmail.com.';
-            header('Location: index.php?pagina=login'); exit;
+            header('Location: index.php?pagina=login' . ((($_POST['redirect'] ?? 'home') === 'carrito') ? '&redirect=carrito' : '')); exit;
         }
         $usuario = $this->usuarioModel->buscarPorCorreo($correo);
         if (!$usuario || !password_verify($password, $usuario['password_hash'])) {
