@@ -11,7 +11,7 @@ class PedidoController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: index.php?pagina=carrito'); exit; }
         if (empty($_SESSION['usuario_id'])) {
             $_SESSION['error_formulario'] = 'Iniciá sesión antes de confirmar tu compra.';
-            header('Location: index.php?pagina=login'); exit;
+            header('Location: index.php?pagina=login&redirect=carrito'); exit;
         }
         $raw = (string)($_POST['carritoJson'] ?? '');
         $items = json_decode($raw, true);
