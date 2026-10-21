@@ -8,9 +8,9 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="public/img/logos/favicon.png" type="image/png">
-    <link rel="stylesheet" href="public/css/header.css">
-    <link rel="stylesheet" href="public/css/footer.css">
-    <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>"><?php endif; ?>
+    <link rel="stylesheet" href="public/css/header.css?v=20261021">
+    <link rel="stylesheet" href="public/css/footer.css?v=20261021">
+    <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>?v=20261021"><?php endif; ?>
     <title>Zora | Más que calzados, tu esencia</title>
 </head>
 <body>
