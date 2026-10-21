@@ -646,5 +646,29 @@ WHERE p.nombre IN (
 )
 ORDER BY c.nombre, p.nombre;
 
+-- =========================================
+-- TALLES Y STOCK DE DEMOSTRACIÓN PARA DESARROLLO
+-- Ajustar cantidades a la disponibilidad real antes de publicar.
+-- =========================================
+INSERT INTO talles (numero)
+SELECT numeros.numero
+FROM (
+    SELECT 38 AS numero UNION ALL SELECT 39 UNION ALL SELECT 40 UNION ALL
+    SELECT 41 UNION ALL SELECT 42 UNION ALL SELECT 43 UNION ALL SELECT 44 UNION ALL SELECT 45
+) AS numeros
+WHERE NOT EXISTS (SELECT 1 FROM talles t WHERE t.numero = numeros.numero);
+
+INSERT INTO producto_talle (producto_id, talle_id, stock)
+SELECT p.id, t.id, 5
+FROM producto p
+CROSS JOIN talles t
+WHERE p.activo = 1
+  AND t.numero BETWEEN 38 AND 45
+  AND NOT EXISTS (
+      SELECT 1 FROM producto_talle pt
+      WHERE pt.producto_id = p.id AND pt.talle_id = t.id
+  );
+
+
 -- Comprobación final:
 SHOW TABLES;
