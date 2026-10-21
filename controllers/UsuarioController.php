@@ -41,8 +41,13 @@ class UsuarioController
                 header('Location: index.php?pagina=registro'); exit;
             }
             $this->usuarioModel->crearUsuario($nombre, $apellido, $correo, $password);
-            $_SESSION['mensaje_formulario'] = 'Cuenta creada correctamente. Ya podés iniciar sesión.';
-            header('Location: index.php?pagina=login'); exit;
+            $usuario = $this->usuarioModel->buscarPorCorreo($correo);
+            if (!$usuario) { throw new RuntimeException('No se pudo recuperar la cuenta recién creada.'); }
+            session_regenerate_id(true);
+            $_SESSION['usuario_id'] = (int)$usuario['id'];
+            $_SESSION['usuario_nombre'] = $usuario['nombre'];
+            $_SESSION['usuario_rol'] = $usuario['rol'];
+            header('Location: index.php?pagina=home'); exit;
         } catch (Throwable $e) {
             $_SESSION['error_formulario'] = 'No se pudo crear la cuenta. Revisá los datos e intentá nuevamente.';
             header('Location: index.php?pagina=registro'); exit;
@@ -55,6 +60,7 @@ class UsuarioController
         $paginaJs = 'public/js/paginaInicioSesion.js';
         $error = $_SESSION['error_formulario'] ?? null; unset($_SESSION['error_formulario']);
         $mensaje = $_SESSION['mensaje_formulario'] ?? null; unset($_SESSION['mensaje_formulario']);
+        $redirect = (($_GET['redirect'] ?? 'home') === 'carrito') ? 'carrito' : 'home';
         require __DIR__ . '/../views/paginas/paginaInicioSesion.php';
     }
 
@@ -76,7 +82,8 @@ class UsuarioController
         $_SESSION['usuario_id'] = (int)$usuario['id'];
         $_SESSION['usuario_nombre'] = $usuario['nombre'];
         $_SESSION['usuario_rol'] = $usuario['rol'];
-        header('Location: index.php?pagina=home'); exit;
+        $destino = (($_POST['redirect'] ?? 'home') === 'carrito') ? 'carrito' : 'home';
+        header('Location: index.php?pagina=' . $destino); exit;
     }
 
     private function correoPermitido(string $correo): bool
