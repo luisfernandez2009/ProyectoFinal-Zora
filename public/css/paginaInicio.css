@@ -315,7 +315,7 @@ html{
 /* Ajustes visuales MVC */
 body{margin:0;background-color:AntiqueWhite}.contenido-principal{padding-top:24px}
 .contenedor-banner{margin:0 20px 50px}.banner-secundario{margin-top:35px}
-.texto-banner-secundario{left:auto;right:8%;text-align:right}
+.texto-banner-secundario{left:8%;right:auto;text-align:left}
 .texto-banner-secundario h2{font-size:clamp(28px,3.2vw,48px);margin:0 0 12px}
 .texto-banner-secundario p{font-size:clamp(18px,2.4vw,32px)}
 .contenedor-productos .producto{box-sizing:border-box;flex:0 1 260px;min-width:0;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.12)}
@@ -326,4 +326,22 @@ body{margin:0;background-color:AntiqueWhite}.contenido-principal{padding-top:24p
 .ventaja{box-sizing:border-box;padding:22px;border-radius:10px;background:rgba(255,255,255,.45);box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .ventaja:hover{border-bottom:3px solid LightSeaGreen}.reseña{box-sizing:border-box;box-shadow:0 2px 10px rgba(0,0,0,.12)}
 .productos,.ventajas,.reseñas{margin:90px 20px}
-@media(max-width:700px){.contenedor-banner{margin-left:10px;margin-right:10px}.texto-banner-secundario{right:5%;left:5%;text-align:right}.contenedor-productos .producto{flex-basis:min(100%,290px)}.productos,.ventajas,.reseñas{margin:55px 12px}}
+@media(max-width:700px){.contenedor-banner{margin-left:10px;margin-right:10px}.texto-banner-secundario{right:auto;left:5%;text-align:left}.contenedor-productos .producto{flex-basis:min(100%,290px)}.productos,.ventajas,.reseñas{margin:55px 12px}}
+
+/* Correcciones solicitadas: tarjetas, banner y espacios */
+.contenido-principal { padding: 28px 20px 70px; box-sizing: border-box; }
+.contenedor-banner { margin-bottom: 50px; }
+.banner-secundario { margin-top: 70px; }
+.contenedor-productos .producto {
+  border: 1px solid LightSeaGreen;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+.contenedor-productos .producto:hover { box-shadow: 0 12px 25px rgba(0,0,0,.22); }
+.productos, .ventajas, .reseñas { margin: 80px 0; }
+.reseñas { margin-bottom: 90px; }
+@media (max-width:700px) {
+  .contenido-principal { padding: 18px 12px 48px; }
+  .banner-secundario { margin-top: 48px; }
+}
