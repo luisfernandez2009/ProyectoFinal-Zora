@@ -36,3 +36,25 @@ JavaScript fue utilizado para incorporar interactividad al sitio, implementando 
 ## Autor
 
 Luis Alberto Fernández Caraballo.
+
+## Arquitectura MVC
+
+El proyecto usa `index.php` como punto de entrada único (router):
+
+- `models/`: consultas preparadas a MySQL para productos, usuarios y pedidos.
+- `controllers/`: coordina catálogo/detalle, registro/inicio de sesión y confirmación de pedidos.
+- `views/paginas/`: vistas del inicio, catálogo, detalle, registro, login, carrito y confirmación.
+- `views/assets/`: encabezado y pie compartidos.
+- `public/js/`: interacción del catálogo y carrito local.
+- `database/script.sql`: esquema y datos de demostración.
+
+### Probar localmente
+
+1. Iniciá Apache y MySQL en XAMPP.
+2. Verificá en `config/conexion.php` el usuario, contraseña y nombre de base de datos (`zora`).
+3. Importá `database/script.sql` en phpMyAdmin. Si ya tenés tablas con otra estructura, no las borres: primero verificá sus columnas y claves foráneas.
+4. Abrí el proyecto desde `http://localhost/ProyectoFinal-Zora/index.php`.
+5. Probá catálogo, detalle, selección de talle, registro, inicio de sesión y carrito. Para finalizar una compra necesitás una cuenta registrada y stock en `producto_talle`.
+
+El stock y los talles agregados por el script son datos de demostración para desarrollo. Ajustalos a la disponibilidad real antes de publicar. Los precios y el stock se verifican nuevamente en el servidor al confirmar el pedido; el navegador no decide el precio final.
+

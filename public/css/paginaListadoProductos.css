@@ -215,3 +215,60 @@ html{
         padding: 0 16px;
     }
 }
+
+
+/* Elementos añadidos para navegación MVC y carrito */
+.filtros a {
+    display: inline-block;
+    background-color: LightSeaGreen;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .3s;
+}
+.filtros a:hover, .filtros a.activo {
+    background-color: teal;
+    color: white;
+}
+.producto-carrito {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: white;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 12px auto;
+    max-width: 850px;
+}
+#formPedido {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(100%, 600px);
+    margin: 30px auto;
+    text-align: left;
+}
+#formPedido input, #formPedido select, #formPedido textarea {
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font: inherit;
+    box-sizing: border-box;
+    width: 100%;
+}
+#formPedido button, .producto-carrito button {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: LightSeaGreen;
+    color: white;
+    cursor: pointer;
+}
+#formPedido button:disabled { opacity: .5; cursor: not-allowed; }
+.mensaje-error { color: #a40000; font-weight: 700; }
+.mensaje-exito { color: #087b36; font-weight: 700; }
