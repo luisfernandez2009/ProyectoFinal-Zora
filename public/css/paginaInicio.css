@@ -1,41 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Yuyu&display=swap');
 
-header {
-	background-color: LightSeaGreen;
-	width: 100%;
-	box-sizing: border-box;
-	box-shadow: 0 2px 10px rgba(0,0,0.08);
-	display: flex;
-    justify-content: space-between;
-    align-items: center;
-	color: Black;
-}
-
-a:link {
-    color: Black;
-    background-color: transparent;
-    text-decoration: none;
-    }
-
-a:visited {
-    color: Black;
-    background-color: transparent;
-    text-decoration: none;
-    }
-
-a:hover {
-	transition: 0.3s;
-    color: LightSteelBlue;
-	background-color: transparent;
-    text-decoration: underline;
-	}
-
-a:active {
-    color: MediumPurple;
-    background-color: transparent;
-    text-decoration: underline;
-    }
-
 body {
 	background-color: AntiqueWhite;
 }
@@ -43,17 +7,6 @@ body {
 h2 {
 	font-family: 'Yuyu', Arial, sans-serif;
 	font-weight: 700;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-header img {
-    width: 50px;
-    height: auto;
 }
 
 #mensajeCarritoHeader{
@@ -68,17 +21,6 @@ header img {
     opacity: 0;
     transition: 0.3s;
     z-index: 999;
-}
-
-nav{
-	display:flex;
-	gap:30px;
-	align-items:center;
-}
-
-nav img {
-	width: 35px;
-	height: auto;
 }
 
 .banner {
@@ -147,56 +89,6 @@ nav img {
 .volver-arriba a:hover{
     background-color:teal;
     transform:scale(1.08);
-}
-
-footer{
-    background:LightSeaGreen;
-    color:black;
-	box-shadow: 0 2px 10px rgba(0,0,0.08);
-    padding:50px;
-	border-top:3px solid teal;
-}
-
-.footer-contenido{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-	gap:50px;
-}
-
-.footer-tienda a,
-.footer-redes a,
-.footer-contacto a{
-    display: block;
-    margin-bottom: 10px;
-    text-decoration: none;
-    color: black;
-	transition: 0.3s;
-}
-
-.footer-tienda a:hover,
-.footer-redes a:hover,
-.footer-contacto a:hover{
-    color: white;
-	transform: scale(1.1);
-}
-
-.footer-contenido h3{
-    margin-bottom:20px;
-}
-
-.footer-marca h2{
-    margin-bottom:15px;
-}
-
-.footer-contacto p{
-    margin-bottom:10px;
-}
-.copyright{
-    text-align:center;
-    margin-top:40px;
-    padding-top:20px;
-    border-top:1px solid rgba(0,0,0,.2);
 }
 
 .productos{
@@ -386,40 +278,10 @@ html{
     transform:translateY(0);
 }
 
-
 /* Ajustes responsive para celulares */
 
 @media (max-width: 600px) {
 
-    /* Encabezado */
-
-    header {
-        width: 100%;
-        flex-direction: column;
-        justify-content: center;
-        gap: 12px;
-        padding: 14px 12px;
-    }
-
-    .logo {
-        justify-content: center;
-        gap: 10px;
-    }
-
-    header img {
-        width: 40px;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    nav img {
-        width: 30px;
-    }
-	
 	.contenedor-banner {
         overflow: hidden;
     }
@@ -447,32 +309,5 @@ html{
         box-sizing: border-box;
     }
 
-    /* Mensaje del carrito */
+ }
 
-    #mensajeCarritoHeader {
-        left: 10px;
-        right: 10px;
-        top: 80px;
-        box-sizing: border-box;
-		pointer-events: none;
-    }
-
-    /* Pie de página */
-
-    footer {
-        width: 100%;
-        padding: 28px 16px;
-        box-sizing: border-box;
-    }
-
-    .footer-contenido {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 24px;
-    }
-
-    .copyright {
-        margin-top: 24px;
-    }
-}

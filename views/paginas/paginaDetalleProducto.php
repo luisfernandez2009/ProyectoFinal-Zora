@@ -1,46 +1,14 @@
-<!DOCTYPE html>
+<?php require __DIR__ . '/header.php'; ?>
  <head>
 	<!-- Creado por Luis Fernández | Última Actualización 12/7/2026 -->
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="../img/logos/favicon.png" type="image/png">
-	<link rel="stylesheet" href="../css/paginaDetalleProducto.css">
+	<link rel="icon" href="../../public/img/logos/favicon.png" type="image/png">
+	<link rel="stylesheet" href="../../public/css/paginaDetalleProducto.css">
 	<title> Zapatería Zora </title>
  </head>
  <body>
- 	<!--====================================================
-							HEADER
-	Este encabezado está presente en todas las páginas del
-	sitio web.
-	Contiene el logotipo de la empresa Zora y el menú de
-	navegación principal, el cual permite al usuario acceder
-	rápidamente a las diferentes secciones del e-commerce
-	como Inicio, Catálogo, Registro, Inicio de sesión y
-	Carrito de compras (el cual para esta entrega no está
-	habilitado).
-	=====================================================-->
-    <header>
-		<div class="logo">
-			<img src="../img/logos/ZoraLogo.png" alt="ZoraLogo">
-			<h2>Zora: Más que calzados, tu esencia.</h2>
-		</div>
-	 <!--====================================================
-						MENÚ DE NAVEGACIÓN
-		Agrupa todos los enlaces principales del sitio.
-	Su función es facilitar la navegación entre las distintas
-	páginas manteniendo una estructura uniforme durante toda
-	la experiencia del usuario.
-	=====================================================-->
-	 <nav>
-		<a href="../index.html">Inicio</a>
-		<a href="paginaListadoProductos.html"> Productos</a>
-		<a href="paginaRegistro.html">Registro</a>
-		<a href="paginaInicioSesion.html">Login</a>
-		<a href="#" id="carritoHeader"><img src="../img/logos/CarritoCompra.png" alt="Carrito"></a>
-	</nav>
-	</header>
-	<p id="mensajeCarritoHeader"></p>
-	<a href="paginaListadoProductos.html" class="volver">← Volver al catálogo</a>
+	<a href="paginaListadoProductos.php" class="volver">← Volver al catálogo</a>
 	<!--====================================================
 					Main de los detalles
 	Es un contenedor el cual contiene las descripciones,
@@ -55,11 +23,11 @@
 	<main>
 		<section class="detalle-producto">
 			<div class="galeria">
-				<img src="../img/productos/placeholder.png" alt="placeholder" class="imagen-principal">
+				<img src="../../public/img/productos/placeholder.png" alt="placeholder" class="imagen-principal">
 				<div class="miniaturas">
-					<img src="../img/productos/placeholder.png" alt="miniatura1" class="miniatura activa">
-					<img src="../img/productos/placeholder.png" alt="miniatura2" class="miniatura">
-					<img src="../img/productos/placeholder.png" alt="miniatura3" class="miniatura">
+					<img src="../../public/img/productos/placeholder.png" alt="miniatura1" class="miniatura activa">
+					<img src="../../public/img/productos/placeholder.png" alt="miniatura2" class="miniatura">
+					<img src="../../public/img/productos/placeholder.png" alt="miniatura3" class="miniatura">
 				</div>
 			</div>
 			<div class="info-producto">
@@ -114,9 +82,9 @@
 			
 			<div class="footer-tienda">
             <h3>Tienda</h3>
-				<a href="paginaListadoProductos.html">👟 Productos</a>
-				<a href="../index.html">🏷️ Ofertas</a>
-				<a href="paginaRegistro.html">👤 Registro</a>
+				<a href="paginaListadoProductos.php">👟 Productos</a>
+				<a href="../../index.php">🏷️ Ofertas</a>
+				<a href="paginaRegistro.php">👤 Registro</a>
 			</div>
 			
 			<div class="footer-redes">
@@ -135,6 +103,6 @@
 	en conjunto con el HTML, sin esto en el HTML, el código
 	no funcionara correctamente.
 	=====================================================-->
-	<script src="../js/paginaDetalleProducto.js"></script>
+	<script src="../../public/js/paginaDetalleProducto.js"></script>
  </body>
 </html>

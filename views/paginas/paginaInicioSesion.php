@@ -3,43 +3,12 @@
 	<!-- Creado por Luis Fernández | Última Actualización 12/7/2026 -->
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="../img/logos/favicon.png" type="image/png">
-	<link rel="stylesheet" href="../css/paginaInicioSesion.css">
+	<link rel="icon" href="../../public/img/logos/favicon.png" type="image/png">
+	<link rel="stylesheet" href="../../public/css/paginaInicioSesion.css">
 	<title> Zapatería Zora </title>
  </head>
  <body>
- 	<!--====================================================
-							HEADER
-	Este encabezado está presente en todas las páginas del
-	sitio web.
-	Contiene el logotipo de la empresa Zora y el menú de
-	navegación principal, el cual permite al usuario acceder
-	rápidamente a las diferentes secciones del e-commerce
-	como Inicio, Catálogo, Registro, Inicio de sesión y
-	Carrito de compras (el cual para esta entrega no está
-	habilitado).
-	=====================================================-->
-    <header>
-		<div class="logo">
-			<img src="../img/logos/ZoraLogo.png" alt="ZoraLogo">
-			<h2>Zora: Más que calzados, tu esencia.</h2>
-		</div>
-	 <!--====================================================
-						MENÚ DE NAVEGACIÓN
-		Agrupa todos los enlaces principales del sitio.
-	Su función es facilitar la navegación entre las distintas
-	páginas manteniendo una estructura uniforme durante toda
-	la experiencia del usuario.
-	=====================================================-->
-	 <nav>
-		<a href="../index.html">Inicio</a>
-		<a href="paginaListadoProductos.html"> Productos</a>
-		<a href="paginaRegistro.html">Registro</a>
-		<a href="paginaInicioSesion.html">Login</a>
-		<a href="#" id="carritoHeader"><img src="../img/logos/CarritoCompra.png" alt="Carrito"></a>
-	</nav>
-	</header>
-	<p id="mensajeCarritoHeader"></p>
+ 	<?php require __DIR__ . '/header.php'; ?>
 	<!--====================================================
 					Main del Inicio de Sesión
 	Es un contenedor el cual contiene los apartados para
@@ -60,7 +29,7 @@
 				<label for="password">Contraseña</label>
 				<input type="password" id="password" placeholder="********">
 				<button type="submit">Iniciar Sesión</button>
-				<p class="registro">¿No tienes una cuenta?<a href="paginaRegistro.html">Registrate!</a></p>
+				<p class="registro">¿No tienes una cuenta?<a href="paginaRegistro.php">Registrate!</a></p>
 			</form>
 		</section>
 	</main>
@@ -89,9 +58,9 @@
 			
 			<div class="footer-tienda">
             <h3>Tienda</h3>
-				<a href="paginaListadoProductos.html">👟 Productos</a>
-				<a href="../index.html">🏷️ Ofertas</a>
-				<a href="paginaRegistro.html">👤 Registro</a>
+				<a href="paginaListadoProductos.php">👟 Productos</a>
+				<a href="../../index.php">🏷️ Ofertas</a>
+				<a href="paginaRegistro.php">👤 Registro</a>
 			</div>
 			
 			<div class="footer-redes">
@@ -110,6 +79,6 @@
 	en conjunto con el HTML, sin esto en el HTML, el código
 	no funcionara correctamente.
 	=====================================================-->
-	<script src="../js/paginaInicioSesion.js"></script>
+	<script src="../../public/js/paginaInicioSesion.js"></script>
  </body>
 </html>

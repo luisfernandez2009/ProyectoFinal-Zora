@@ -1,47 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
- <head>
-	<!-- Creado por Luis Fernández | Última Actualización 12/7/2026 -->
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="img/logos/favicon.png" type="image/png">
-	<link rel="stylesheet" href="css/paginaInicio.css">
-	<title> Zapatería Zora </title>
- </head>
- <body>
-	<!--====================================================
-							HEADER
-	Este encabezado está presente en todas las páginas del
-	sitio web.
-	Contiene el logotipo de la empresa Zora y el menú de
-	navegación principal, el cual permite al usuario acceder
-	rápidamente a las diferentes secciones del e-commerce
-	como Inicio, Catálogo, Registro, Inicio de sesión y
-	Carrito de compras (el cual para esta entrega no está
-	habilitado).
-	=====================================================-->
-    <header>
-		<div class="logo">
-			<img src="img/logos/ZoraLogo.png" alt="ZoraLogo">
-			<h2>Zora: Más que calzados, tu esencia.</h2>
-		</div>
-	 <!--====================================================
-						MENÚ DE NAVEGACIÓN
-		Agrupa todos los enlaces principales del sitio.
-	Su función es facilitar la navegación entre las distintas
-	páginas manteniendo una estructura uniforme durante toda
-	la experiencia del usuario.
-	=====================================================-->
-		<nav>
-			<a href="index.html">Inicio</a>
-			<a href="paginas/paginaListadoProductos.html"> Productos</a>
-			<a href="paginas/paginaRegistro.html">Registro</a>
-			<a href="paginas/paginaInicioSesion.html">Login</a>
-			<a href="#" id="carritoHeader"><img src="img/logos/CarritoCompra.png" alt="Carrito"></a>
-		</nav>
-	</header>
-	<p id="mensajeCarritoHeader"></p>
-	<br>
+<?php require __DIR__ . '/header.php'; ?>
+	<link rel="stylesheet" href="../../public/css/paginaInicio.css">
 	<!--====================================================
 						BANNER PRINCIPAL
 	Este banner es la primera sección visual que observa el
@@ -50,12 +8,12 @@
 	la página web.
 	=====================================================-->
 	<div class="contenedor-banner">
-		<img class="banner" src="img/banners/banner1.png" alt="Banner1">
+		<img class="banner" src="../../public/img/banners/banner1.png" alt="Banner1">
 		<div class="texto-banner">
 			<h1>Nueva colección 2026</h1>
 			<p>Camina con confianza.</p>
 			<p>Descubre la nueva colección Zora.</p>
-			<a href="paginas/paginaListadoProductos.html">Explorar colección.</a>
+			<a href="paginaListadoProductos.php">Explorar colección.</a>
 		</div>
 	</div>
 	<!--====================================================
@@ -70,32 +28,32 @@
 		<h2>Productos destacados</h2>
 		<div class="contenedor-productos">
 			<div class="producto">
-				<img src="img/productos/nike-airmax270.jpg" alt="Nike Air Max 270">
+				<img src="../../public/img/productos/nike-airmax270.jpg" alt="Nike Air Max 270">
 				<h3>Nike Air Max 270</h3>
 				<p>⭐⭐⭐⭐⭐</p>
 				<p>$6.590</p>
-				<a href="paginas/paginaDetalleProducto.html?producto=nike-airmax270">Ver detalles</a>
+				<a href="paginaDetalleProducto.php?producto=nike-airmax270">Ver detalles</a>
 			</div>
 			<div class="producto">
-				<img src="img/productos/adidas-ultraboost-light.jpg" alt="Adidas Ultraboost Light">
+				<img src="../../public/img/productos/adidas-ultraboost-light.jpg" alt="Adidas Ultraboost Light">
 				<h3>Adidas Ultraboost Light</h3>
 				<p>⭐⭐⭐⭐⭐</p>
 				<p>$8.490</p>
-				<a href="paginas/paginaDetalleProducto.html?producto=adidas-ultraboost-light">Ver detalles</a>
+				<a href="paginaDetalleProducto.php?producto=adidas-ultraboost-light">Ver detalles</a>
 			</div>
 			<div class="producto">
-				<img src="img/productos/new-balance-574.jpg" alt="New Balance 574">
+				<img src="../../public/img/productos/new-balance-574.jpg" alt="New Balance 574">
 				<h3>New Balance 574</h3>
 				<p>⭐⭐⭐⭐⭐</p>
 				<p>$5.990</p>
-				<a href="paginas/paginaDetalleProducto.html?producto=new-balance-574">Ver detalles</a>
+				<a href="paginaDetalleProducto.php?producto=new-balance-574">Ver detalles</a>
 			</div>
 			<div class="producto">
-				<img src="img/productos/puma_rs-x_b&w.jpg" alt="Puma RS-X B&W">
+				<img src="../../public/img/productos/puma_rs-x_b&w.jpg" alt="Puma RS-X B&W">
 				<h3>Puma RS-X B&W</h3>
 				<p>⭐⭐⭐⭐⭐</p>
 				<p>$5.290</p>
-				<a href="paginas/paginaDetalleProducto.html?producto=puma-rs-x-bw">Ver detalles</a>
+				<a href="paginaDetalleProducto.php?producto=puma-rs-x-bw">Ver detalles</a>
 			</div>
 		</div>
 	</section>
@@ -110,22 +68,22 @@
 		<h2>¿Por qué elegirnos a nosotros?</h2>
 		<div class="contenedor-ventajas">
 			<div class="ventaja">
-				<img src="img/logos/camion.png" alt="Envíos">
+				<img src="../../public/img/logos/camion.png" alt="Envíos">
 				<h3>🚚 Hacemos envíos a todo Uruguay!</h3>
 				<p>Recibe tus zapatillas de forma rápida y segura en cualquier departamento.</p>
 			</div>
 			<div class="ventaja">
-				<img src="img/logos/escudo.png" alt="Seguridad">
+				<img src="../../public/img/logos/escudo.png" alt="Seguridad">
 				<h3>🛡️ Compra segura!</h3>
 				<p>Tus datos y pagos están protegidos.</p>
 			</div>
 			<div class="ventaja">
-				<img src="img/logos/zapato.png" alt="Original">
+				<img src="../../public/img/logos/zapato.png" alt="Original">
 				<h3>👟 Marcas originales!</h3>
 				<p>Trabajamos únicamente con productos auténticos.</p>
 			</div>
 			<div class="ventaja">
-				<img src="img/logos/estrella.png" alt="Calidad">
+				<img src="../../public/img/logos/estrella.png" alt="Calidad">
 				<h3>⭐ Calidad garantizada!</h3>
 				<p>Elegimos modelos cómodos y duraderos.</p>
 			</div>
@@ -143,19 +101,19 @@
 		<h2>Lo que opinan nuestros clientes</h2>
 		<div class="contenedor-reseñas">
 			<div class="reseña">
-				<img src="img/clientes/cliente1.png" alt="Sofía Martínez">
+				<img src="../../public/img/clientes/cliente1.png" alt="Sofía Martínez">
 				<h3>Sofía Martínez</h3>
 				<p class="estrellas">★★★★★</p>
 				<p>"Las zapatillas llegaron antes de lo esperado. Muy cómodas y la atención fue excelente."</p>
 			</div>
 			<div class="reseña">
-				<img src="img/clientes/cliente2.png" alt="Martín Rodríguez">
+				<img src="../../public/img/clientes/cliente2.png" alt="Martín Rodríguez">
 				<h3>Martín Rodríguez</h3>
 				<p class="estrellas">★★★★☆</p>
 				<p>"Compré unas Adidas para correr y la calidad superó mis expectativas. Seguro vuelvo a comprar."</p>
 			</div>
 			<div class="reseña">
-				<img src="img/clientes/cliente3.png" alt="Valentina Pereira">
+				<img src="../../public/img/clientes/cliente3.png" alt="Valentina Pereira">
 				<h3>Valentina Pereira</h3>
 				<p class="estrellas">★★★★★</p>
 				<p>"El sitio es muy fácil de usar y el envío fue rapidísimo. Recomiendo comprar en Zora sin dudas!"</p>
@@ -171,11 +129,11 @@
 	la página web.
 	=====================================================-->
 	<div class="contenedor-banner">
-		<img class="banner" src="img/banners/banner2.png" alt="Banner2">
+		<img class="banner" src="../../public/img/banners/banner2.png" alt="Banner2">
 		<div class="texto-banner">
 			<h1>Nueva temporada</h1>
 			<p>Descubrela y caminaras sobre nubes!</p>
-			<a href="paginas/paginaListadoProductos.html">Comprar ahora</a>
+			<a href="paginaListadoProductos.php">Comprar ahora</a>
 		</div>
 	</div>
 	 <!--====================================================
@@ -186,48 +144,12 @@
 	<div class="volver-arriba">
 		<a href="#">⬆ Volver arriba</a>
 	</div>
-	<!--====================================================
-					        FOOTER
-	Este banner es el último apartado visual que ve el usuario
-	en la página principal, en este se encuentran las Redes
-	Sociales de la marca y unos enlaces para ir a las otras
-	partes de la página (Productos, Ofertas (página principal)
-	y la página de registro).
-	=====================================================-->
-	<footer>
-		<div class="footer-contenido">
-			<div class="footer-marca">
-				<h2>Zora</h2>
-				<p>Más que calzados, tu esencia.</p>
-			</div>
-			<div class="footer-contacto">
-				<h3>Contacto</h3>
-				<p>📞 (+598) 094 812 290</p>
-				<a href="mailto:digitalrocklp@gmail.com">📧 digitalrocklp@gmail.com</a>
-				<p>📍 Las Piedras, Uruguay</p>
-			</div>
-			<div class="footer-tienda">
-				<h3>Tienda</h3>
-				<a href="paginas/paginaListadoProductos.html">👟 Productos</a>
-				<a href="index.html">🏷️ Ofertas</a>
-				<a href="paginas/paginaRegistro.html">👤 Registro</a>
-			</div>
-			<div class="footer-redes">
-				<h3>Redes</h3>
-				<a href="https://www.instagram.com/digitalrocklp/">📷 Síguenos!</a>
-				<a href="https://www.tiktok.com/@digitalrocklp">✨ Inspírate con Zora!</a>
-				<a href="https://x.com/DigitalRockLP">🐦 Novedades!</a>
-				<a href="https://t.me/+IV4q_fwLv-NkNDZh">⚡ Resolvemos tus dudas al instante!</a>
-			</div>
-		</div>
-		 <p class="copyright">© 2026 Zora. Todos los derechos reservados.</p>
-	</footer>
+	
 	<!--====================================================
 							Script
 	Esto sirve para que el archivo ".js" de la página funcione
 	en conjunto con el HTML, sin esto en el HTML, el código
 	no funcionara correctamente.
 	=====================================================-->
-	<script src="js/paginaInicio.js"></script>
- </body>
-</html>
+	<script src="../../public/js/paginaInicio.js"></script>
+ <?php require __DIR__ . '/footer.php'; ?>

@@ -43,6 +43,6 @@ formulario.addEventListener("submit", function(event){
     localStorage.setItem("usuario", JSON.stringify(usuario));
     alert("✔ Cuenta creada correctamente. Redirigiendo al inicio de sesión...");
     setTimeout(() => {
-		window.location.href = "paginaInicioSesion.html";
+		window.location.href = "paginaInicioSesion.php";
 	}, 1500);
 });
