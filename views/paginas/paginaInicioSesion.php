@@ -4,6 +4,7 @@
     <?php if (!empty($mensaje)): ?><p class="mensaje-exito" role="status"><?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
     <?php if (!empty($error)): ?><p class="mensaje-error" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
     <form id="formLogin" class="formulario-login" action="index.php?pagina=procesar-login" method="post">
+        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect ?? 'home', ENT_QUOTES, 'UTF-8') ?>">
         <label for="correo">Correo electrónico</label><input type="email" id="correo" name="correo" required autocomplete="email">
         <label for="password">Contraseña</label><input type="password" id="password" name="password" required autocomplete="current-password">
         <button type="submit">Iniciar sesión</button>
