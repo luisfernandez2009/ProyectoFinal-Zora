@@ -23,8 +23,16 @@ class UsuarioController
         $password = (string)($_POST['password'] ?? '');
         $confirmar = (string)($_POST['confirmarPassword'] ?? '');
 
-        if ($nombre === '' || $apellido === '' || !filter_var($correo, FILTER_VALIDATE_EMAIL) || strlen($password) < 8 || $password !== $confirmar) {
-            $_SESSION['error_formulario'] = 'Revisá los datos: completá todos los campos, usá un correo válido y una contraseña de al menos 8 caracteres que coincida con la confirmación.';
+        if ($nombre === '' || $apellido === '') {
+            $_SESSION['error_formulario'] = 'Completá tu nombre y apellido.';
+            header('Location: index.php?pagina=registro'); exit;
+        }
+        if (!$this->correoPermitido($correo)) {
+            $_SESSION['error_formulario'] = 'El correo debe ser válido y terminar en @gmail.com o @hotmail.com.';
+            header('Location: index.php?pagina=registro'); exit;
+        }
+        if (strlen($password) < 8 || $password !== $confirmar) {
+            $_SESSION['error_formulario'] = 'La contraseña debe tener al menos 8 caracteres y coincidir con la confirmación.';
             header('Location: index.php?pagina=registro'); exit;
         }
         try {
@@ -55,7 +63,11 @@ class UsuarioController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: index.php?pagina=login'); exit; }
         $correo = trim((string)($_POST['correo'] ?? ''));
         $password = (string)($_POST['password'] ?? '');
-        $usuario = filter_var($correo, FILTER_VALIDATE_EMAIL) ? $this->usuarioModel->buscarPorCorreo($correo) : null;
+        if (!$this->correoPermitido($correo)) {
+            $_SESSION['error_formulario'] = 'Ingresá un correo válido que termine en @gmail.com o @hotmail.com.';
+            header('Location: index.php?pagina=login'); exit;
+        }
+        $usuario = $this->usuarioModel->buscarPorCorreo($correo);
         if (!$usuario || !password_verify($password, $usuario['password_hash'])) {
             $_SESSION['error_formulario'] = 'Correo o contraseña incorrectos.';
             header('Location: index.php?pagina=login'); exit;
@@ -65,6 +77,12 @@ class UsuarioController
         $_SESSION['usuario_nombre'] = $usuario['nombre'];
         $_SESSION['usuario_rol'] = $usuario['rol'];
         header('Location: index.php?pagina=home'); exit;
+    }
+
+    private function correoPermitido(string $correo): bool
+    {
+        return (bool) filter_var($correo, FILTER_VALIDATE_EMAIL)
+            && (bool) preg_match('/@(gmail\\.com|hotmail\\.com)$/i', $correo);
     }
 
     public function cerrarSesion(): void
