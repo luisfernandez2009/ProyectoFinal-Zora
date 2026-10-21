@@ -272,3 +272,9 @@ html{
 #formPedido button:disabled { opacity: .5; cursor: not-allowed; }
 .mensaje-error { color: #a40000; font-weight: 700; }
 .mensaje-exito { color: #087b36; font-weight: 700; }
+
+.busqueda{display:flex;align-items:stretch;justify-content:center;gap:10px}
+.busqueda button{padding:14px 26px;border:0;border-radius:30px;background:LightSeaGreen;color:white;font:inherit;font-weight:700;cursor:pointer;transition:background-color .3s,transform .3s}
+.busqueda button:hover{background:teal;transform:translateY(-2px)}
+.productos-catalogo{margin-bottom:80px}
+@media(max-width:700px){.busqueda{flex-direction:column;align-items:center}.busqueda button{width:min(100%,400px)}}
