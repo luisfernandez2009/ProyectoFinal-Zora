@@ -1,28 +1,13 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
-<section class="contenedor-banner">
-    <img class="banner" src="public/img/banners/banner1.png" alt="Nueva colección de Zora">
-    <div class="texto-banner"><h1>Nueva colección 2026</h1><p>Camina con confianza.</p><p>Descubre la nueva colección Zora.</p><a href="index.php?pagina=productos">Explorar colección</a></div>
-</section>
-<section class="productos">
-    <h2>Productos destacados</h2>
-    <div class="contenedor-productos">
-    <?php foreach ($productosDestacados as $producto): ?>
-        <article class="producto">
-            <a href="index.php?pagina=detalle&amp;id=<?= (int)$producto['id'] ?>"><img src="<?= htmlspecialchars($producto['imagen'] ?: 'public/img/logos/zapato.png', ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?>"></a>
-            <h3><?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></h3><p>★★★★★</p>
-            <p>$<?= number_format((float)$producto['precio'], 0, ',', '.') ?></p>
-            <a href="index.php?pagina=detalle&amp;id=<?= (int)$producto['id'] ?>">Ver detalles</a>
-        </article>
-    <?php endforeach; ?>
-    <?php if (!$productosDestacados): ?><p>Pronto encontrarás productos destacados.</p><?php endif; ?>
-    </div>
-</section>
-<section class="ventajas">
-    <h2>¿Por qué elegirnos?</h2><div class="contenedor-ventajas">
-        <div class="ventaja"><img src="public/img/logos/camion.png" alt="Envíos"><h3>🚚 Envíos a todo Uruguay</h3><p>Recibí tus zapatillas de forma cómoda y segura.</p></div>
-        <div class="ventaja"><img src="public/img/logos/escudo.png" alt="Seguridad"><h3>🛡️ Compra segura</h3><p>Cuidamos tu experiencia de compra.</p></div>
-        <div class="ventaja"><img src="public/img/logos/zapato.png" alt="Marcas"><h3>👟 Marcas reconocidas</h3><p>Explorá Adidas, Nike, Puma y New Balance.</p></div>
-        <div class="ventaja"><img src="public/img/logos/estrella.png" alt="Calidad"><h3>⭐ Calidad y estilo</h3><p>Encontrá un modelo para tu día a día.</p></div>
-    </div>
-</section>
+<section class="contenedor-banner"><img class="banner" src="public/img/banners/banner1.png" alt="Nueva colección de Zora"><div class="texto-banner"><h1>Nueva colección 2026</h1><p>Camina con confianza.</p><p>Descubre la nueva colección Zora.</p><a href="index.php?pagina=productos">Explorar colección</a></div></section>
+<section class="contenedor-banner banner-secundario"><img class="banner" src="public/img/banners/banner2.png" alt="Zapatillas rojas de la colección Zora" loading="lazy"><div class="texto-banner texto-banner-secundario"><h2>Un estilo que destaca</h2><p>Elegí tu próximo par favorito.</p><a href="index.php?pagina=productos">Ver catálogo</a></div></section>
+<section class="productos"><h2>Productos destacados</h2><div class="contenedor-productos">
+<?php foreach ($productosDestacados as $producto): ?><article class="producto"><a class="imagen-producto-home" href="index.php?pagina=detalle&amp;id=<?= (int)$producto['id'] ?>"><img src="<?= htmlspecialchars($producto['imagen'] ?: 'public/img/logos/zapato.png', ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?>"></a><h3><?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></h3><p class="estrellas" aria-label="Calificación ilustrativa">★★★★★</p><p class="precio">$<?= number_format((float)$producto['precio'], 0, ',', '.') ?></p><a class="enlace-detalle-home" href="index.php?pagina=detalle&amp;id=<?= (int)$producto['id'] ?>">Ver detalles</a></article><?php endforeach; ?>
+<?php if (!$productosDestacados): ?><p>Pronto encontrarás productos destacados.</p><?php endif; ?></div></section>
+<section class="ventajas"><h2>¿Por qué elegirnos?</h2><div class="contenedor-ventajas"><div class="ventaja"><img src="public/img/logos/camion.png" alt="Envíos"><h3>🚚 Envíos a todo Uruguay</h3><p>Recibí tus zapatillas de forma cómoda y segura.</p></div><div class="ventaja"><img src="public/img/logos/escudo.png" alt="Seguridad"><h3>🛡️ Compra segura</h3><p>Cuidamos tu experiencia de compra.</p></div><div class="ventaja"><img src="public/img/logos/zapato.png" alt="Marcas"><h3>👟 Marcas reconocidas</h3><p>Explorá Adidas, Nike, Puma y New Balance.</p></div><div class="ventaja"><img src="public/img/logos/estrella.png" alt="Calidad"><h3>⭐ Calidad y estilo</h3><p>Encontrá un modelo para tu día a día.</p></div></div></section>
+<section class="reseñas"><h2>Lo que dicen nuestros clientes</h2><div class="contenedor-reseñas">
+<article class="reseña"><img src="public/img/clientes/cliente1.png" alt="Cliente de Zora" loading="lazy"><p class="estrellas" aria-label="5 de 5 estrellas">★★★★★</p><p>“Excelente atención y muy cómodas las zapatillas. La compra fue sencilla y llegó todo perfecto.”</p><h3>Cliente de Zora</h3></article>
+<article class="reseña"><img src="public/img/clientes/cliente2.png" alt="Cliente de Zora" loading="lazy"><p class="estrellas" aria-label="5 de 5 estrellas">★★★★★</p><p>“Encontré el modelo que buscaba y el proceso de compra fue rápido. Volvería a comprar.”</p><h3>Cliente de Zora</h3></article>
+<article class="reseña"><img src="public/img/clientes/cliente3.png" alt="Cliente de Zora" loading="lazy"><p class="estrellas" aria-label="5 de 5 estrellas">★★★★★</p><p>“Buena variedad de marcas y diseños. Me gustó mucho la experiencia de compra.”</p><h3>Cliente de Zora</h3></article>
+</div></section>
 <?php require __DIR__ . '/../assets/footer.php'; ?>
