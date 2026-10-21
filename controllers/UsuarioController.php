@@ -66,7 +66,7 @@ class UsuarioController
 
     public function procesarLogin(): void
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: index.php?pagina=login'); exit; }
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: index.php?pagina=login' . ((($_POST['redirect'] ?? 'home') === 'carrito') ? '&redirect=carrito' : '')); exit; }
         $correo = trim((string)($_POST['correo'] ?? ''));
         $password = (string)($_POST['password'] ?? '');
         if (!$this->correoPermitido($correo)) {
