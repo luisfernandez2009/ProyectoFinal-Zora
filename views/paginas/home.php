@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
 <section class="contenedor-banner"><img class="banner" src="public/img/banners/banner1.png" alt="Nueva colección de Zora"><div class="texto-banner"><h1>Nueva colección 2026</h1><p>Camina con confianza.</p><p>Descubre la nueva colección Zora.</p><a href="index.php?pagina=productos">Explorar colección</a></div></section>
-<section class="contenedor-banner banner-secundario"><img class="banner" src="public/img/banners/banner2.png" alt="Zapatillas rojas de la colección Zora" loading="lazy"><div class="texto-banner texto-banner-secundario"><h2>Un estilo que destaca</h2><p>Elegí tu próximo par favorito.</p><a href="index.php?pagina=productos">Ver catálogo</a></div></section>
+
 <section class="productos"><h2>Productos destacados</h2><div class="contenedor-productos">
 <?php foreach ($productosDestacados as $producto): ?><article class="producto"><a class="imagen-producto-home" href="index.php?pagina=detalle&amp;id=<?= (int)$producto['id'] ?>"><img src="<?= htmlspecialchars($producto['imagen'] ?: 'public/img/logos/zapato.png', ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?>"></a><h3><?= htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></h3><p class="estrellas" aria-label="Calificación ilustrativa">★★★★★</p><p class="precio">$<?= number_format((float)$producto['precio'], 0, ',', '.') ?></p><a class="enlace-detalle-home" href="index.php?pagina=detalle&amp;id=<?= (int)$producto['id'] ?>">Ver detalles</a></article><?php endforeach; ?>
 <?php if (!$productosDestacados): ?><p>Pronto encontrarás productos destacados.</p><?php endif; ?></div></section>
@@ -10,4 +10,5 @@
 <article class="reseña"><img src="public/img/clientes/cliente2.png" alt="Cliente de Zora" loading="lazy"><p class="estrellas" aria-label="5 de 5 estrellas">★★★★★</p><p>“Encontré el modelo que buscaba y el proceso de compra fue rápido. Volvería a comprar.”</p><h3>Cliente de Zora</h3></article>
 <article class="reseña"><img src="public/img/clientes/cliente3.png" alt="Cliente de Zora" loading="lazy"><p class="estrellas" aria-label="5 de 5 estrellas">★★★★★</p><p>“Buena variedad de marcas y diseños. Me gustó mucho la experiencia de compra.”</p><h3>Cliente de Zora</h3></article>
 </div></section>
+<section class="contenedor-banner banner-secundario"><img class="banner" src="public/img/banners/banner2.png" alt="Zapatillas rojas de la colección Zora" loading="lazy"><div class="texto-banner texto-banner-secundario"><h2>Un estilo que destaca</h2><p>Elegí tu próximo par favorito.</p><a href="index.php?pagina=productos">Ver catálogo</a></div></section>
 <?php require __DIR__ . '/../assets/footer.php'; ?>
