@@ -16,7 +16,7 @@ $stream = null;
 $extension = '';
 for ($i = 0; $i < $zip->numFiles; $i++) {
     $nombre = $zip->getNameIndex($i);
-    if (!$nombre || strpos($nombre, '/') !== false) continue;
+    if (!$nombre || substr($nombre, -1) === '/') continue;
     $ext = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
     if (in_array($ext, ['woff2', 'woff', 'ttf', 'otf'], true)) {
         $stream = $zip->getStream($nombre);
