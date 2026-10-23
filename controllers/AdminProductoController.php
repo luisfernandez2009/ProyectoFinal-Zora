@@ -56,7 +56,7 @@ class AdminProductoController
     {
         $this->exigirAdmin();
         $this->validarPeticion();
-        $id = filter_var($_POST['id'] ?? 0, FILTER_VALIDATE_INT);
+        $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
         $nombre = trim((string)($_POST['nombre'] ?? ''));
         $marca = trim((string)($_POST['marca'] ?? ''));
         $descripcion = trim((string)($_POST['descripcion'] ?? ''));
@@ -66,8 +66,8 @@ class AdminProductoController
         $stocksEntrada = $_POST['stock'] ?? [];
         $stocks = [];
 
-        if (!$id || $id < 0 || $nombre === '' || mb_strlen($nombre) > 150 || $marca === '' ||
-            mb_strlen($marca) > 100 || $precio === false || $precio < 0 || !$categoriaId ||
+        if ($id === false || $id === null || $id < 0 || $nombre === '' || (function_exists('mb_strlen') ? mb_strlen($nombre, 'UTF-8') : strlen($nombre)) > 150 || $marca === '' ||
+            (function_exists('mb_strlen') ? mb_strlen($marca, 'UTF-8') : strlen($marca)) > 100 || $precio === false || $precio < 0 || !$categoriaId ||
             $stockMinimo === false || $stockMinimo < 0 || !is_array($stocksEntrada)) {
             $this->volverConError('Completá los campos obligatorios con valores válidos.', $id > 0 ? (int)$id : null);
         }
