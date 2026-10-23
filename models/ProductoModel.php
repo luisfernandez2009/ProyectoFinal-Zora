@@ -23,7 +23,8 @@ class ProductoModel
         }
         if ($busqueda !== null && trim($busqueda) !== '') {
             $sql .= " AND (p.nombre LIKE ? OR p.marca LIKE ? OR p.descripcion LIKE ?)";
-            $like = '%' . trim($busqueda) . '%';
+            $textoSeguro = str_replace(['\\', '%', '_'], ['\\\\', '\\%', '\\_'], trim($busqueda));
+            $like = '%' . $textoSeguro . '%';
             $tipos .= 'sss'; array_push($params, $like, $like, $like);
         }
         $sql .= " ORDER BY p.nombre ASC";
