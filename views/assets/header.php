@@ -25,6 +25,7 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
         <?php if (($_SESSION['usuario_rol'] ?? '') === 'admin'): ?><a href="index.php?pagina=admin-usuarios">Usuarios</a><a href="index.php?pagina=admin-productos">Productos admin</a><?php endif; ?>
         <?php if ($nombreUsuario): ?>
             <span>Hola, <?= htmlspecialchars($nombreUsuario, ENT_QUOTES, 'UTF-8') ?></span>
+            <a href="index.php?pagina=mis-pedidos">Mis pedidos</a>
             <a href="index.php?pagina=logout">Cerrar sesión</a>
         <?php else: ?>
             <a href="index.php?pagina=registro">Registro</a>
