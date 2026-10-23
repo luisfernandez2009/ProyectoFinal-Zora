@@ -31,6 +31,8 @@ class PedidoController
             'metodo_pago'=>trim((string)($_POST['metodo_pago'] ?? '')),
             'observaciones'=>trim((string)($_POST['observaciones'] ?? ''))
         ];
+        // El método de pago lo define el servidor; el navegador no puede alterarlo.
+        $datos['metodo_pago'] = 'Tarjeta (simulación)';
         $datos['telefono'] = preg_replace('/[^0-9]/', '', $datos['telefono']);
         $erroresEnvio = [];
         if (!$this->largoEntre($datos['nombre'], 3, 60)) {
