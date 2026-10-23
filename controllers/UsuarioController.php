@@ -78,6 +78,10 @@ class UsuarioController
             $_SESSION['error_formulario'] = 'Correo o contraseña incorrectos.';
             header('Location: index.php?pagina=login' . ((($_POST['redirect'] ?? 'home') === 'carrito') ? '&redirect=carrito' : '')); exit;
         }
+        if ((int)($usuario['activo'] ?? 1) !== 1) {
+            $_SESSION['error_formulario'] = 'Esta cuenta está desactivada. Contactá con la tienda para recibir ayuda.';
+            header('Location: index.php?pagina=login' . ((($_POST['redirect'] ?? 'home') === 'carrito') ? '&redirect=carrito' : '')); exit;
+        }
         session_regenerate_id(true);
         $_SESSION['usuario_id'] = (int)$usuario['id'];
         $_SESSION['usuario_nombre'] = $usuario['nombre'];
