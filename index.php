@@ -9,6 +9,22 @@ require_once __DIR__ . '/models/PedidoModel.php';
 require_once __DIR__ . '/controllers/ProductoController.php';
 require_once __DIR__ . '/controllers/UsuarioController.php';
 require_once __DIR__ . '/controllers/PedidoController.php';
+require_once __DIR__ . '/controllers/AdminUsuarioController.php';
+
+// Sincroniza rol y estado con la base en cada petición: una cuenta desactivada
+// pierde el acceso incluso si ya tenía una sesión abierta.
+if (!empty($_SESSION['usuario_id'])) {
+    $usuarioSesion = (new UsuarioModel($conexion))->obtenerEstadoSesion((int)$_SESSION['usuario_id']);
+    if (!$usuarioSesion || (int)$usuarioSesion['activo'] !== 1) {
+        $_SESSION = [];
+        session_regenerate_id(true);
+        $_SESSION['mensaje_formulario'] = 'Tu cuenta está desactivada o ya no existe. Contactá con la tienda si necesitás ayuda.';
+        header('Location: index.php?pagina=login');
+        exit;
+    }
+    $_SESSION['usuario_nombre'] = $usuarioSesion['nombre'];
+    $_SESSION['usuario_rol'] = $usuarioSesion['rol'];
+}
 
 $paginaSolicitada = $_GET['pagina'] ?? 'home';
 $productoController = new ProductoController($conexion);
@@ -42,6 +58,15 @@ switch ($paginaSolicitada) {
         break;
     case 'logout':
         $usuarioController->cerrarSesion();
+        break;
+    case 'admin-usuarios':
+        (new AdminUsuarioController($conexion))->listar();
+        break;
+    case 'admin-usuario-rol':
+        (new AdminUsuarioController($conexion))->cambiarRol();
+        break;
+    case 'admin-usuario-activo':
+        (new AdminUsuarioController($conexion))->cambiarActivo();
         break;
     case 'carrito':
         $paginaCss = 'public/css/paginaListadoProductos.css';
