@@ -53,6 +53,7 @@ class PedidoController
             header('Location: index.php?pagina=pago-resultado&id=' . (int)$pedido['id']);
             exit;
         }
+        $detalle = $this->pedidoModel->obtenerDetalle((int)$pedido['id']);
 
         if (empty($_SESSION['csrf_pago'])) {
             $_SESSION['csrf_pago'] = bin2hex(random_bytes(32));
