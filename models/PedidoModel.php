@@ -89,8 +89,9 @@ class PedidoModel
     public function listarPorUsuario(int $usuarioId): array
     {
         $stmt = $this->conexion->prepare(
-            "SELECT id, fecha_pedido, estado, total, metodo_pago
-             FROM pedido WHERE usuario_id = ? ORDER BY fecha_pedido DESC, id DESC"
+            "SELECT p.id, p.fecha_pedido, p.estado, p.total, p.metodo_pago,
+                    EXISTS(SELECT 1 FROM pago pg WHERE pg.pedido_id = p.id AND pg.resultado = 'aprobado') AS pago_aprobado
+             FROM pedido p WHERE p.usuario_id = ? ORDER BY p.fecha_pedido DESC, p.id DESC"
         );
         $stmt->bind_param('i', $usuarioId);
         $stmt->execute();
