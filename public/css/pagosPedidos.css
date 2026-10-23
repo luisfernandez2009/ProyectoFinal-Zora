@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Yuyu&display=swap');
+
+.pantalla-pago h1,.resultado-pago h1,.mis-pedidos h1,.detalle-pedido h1,.factura h1{font-family:'Yuyu',Arial,sans-serif}
 .pantalla-pago,.resultado-pago,.mis-pedidos,.detalle-pedido,.factura{max-width:1100px;margin:35px auto 80px;padding:0 20px;box-sizing:border-box}
 .pantalla-pago h1,.resultado-pago h1,.mis-pedidos h1,.detalle-pedido h1{text-align:center}
 .pantalla-pago>p,.resultado-pago>p{text-align:center}
