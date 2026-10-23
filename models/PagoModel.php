@@ -13,7 +13,7 @@ class PagoModel
         if (!in_array($resultado, ['aprobado', 'rechazado'], true) || !preg_match('/^\d{4}$/', $ultimos4)) {
             return false;
         }
-        $estadoPedido = $resultado === 'aprobado' ? 'confirmado' : 'pendiente';
+        $estadoPedido = $resultado === 'aprobado' ? 'pagado' : 'rechazado';
         $this->conexion->begin_transaction();
         try {
             $stmt = $this->conexion->prepare(
