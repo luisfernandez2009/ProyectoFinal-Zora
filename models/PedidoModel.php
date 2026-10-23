@@ -75,4 +75,45 @@ class PedidoModel
         $pedido = $stmt->get_result()->fetch_assoc() ?: null; $stmt->close();
         return $pedido;
     }
+
+    public function obtenerPedidoCompleto(int $pedidoId, int $usuarioId): ?array
+    {
+        $stmt = $this->conexion->prepare("SELECT * FROM pedido WHERE id = ? AND usuario_id = ? LIMIT 1");
+        $stmt->bind_param('ii', $pedidoId, $usuarioId);
+        $stmt->execute();
+        $pedido = $stmt->get_result()->fetch_assoc() ?: null;
+        $stmt->close();
+        return $pedido;
+    }
+
+    public function listarPorUsuario(int $usuarioId): array
+    {
+        $stmt = $this->conexion->prepare(
+            "SELECT id, fecha_pedido, estado, total, metodo_pago
+             FROM pedido WHERE usuario_id = ? ORDER BY fecha_pedido DESC, id DESC"
+        );
+        $stmt->bind_param('i', $usuarioId);
+        $stmt->execute();
+        $pedidos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $pedidos;
+    }
+
+    /** Usar después de comprobar que el pedido pertenece al usuario de la sesión. */
+    public function obtenerDetalle(int $pedidoId): array
+    {
+        $stmt = $this->conexion->prepare(
+            "SELECT p.nombre, p.marca, t.numero AS talle, d.cantidad, d.precio_unitario,
+                    (d.cantidad * d.precio_unitario) AS subtotal
+             FROM detalle_pedido d
+             INNER JOIN producto p ON p.id = d.producto_id
+             INNER JOIN talles t ON t.id = d.talle_id
+             WHERE d.pedido_id = ? ORDER BY p.nombre, t.numero"
+        );
+        $stmt->bind_param('i', $pedidoId);
+        $stmt->execute();
+        $detalle = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $detalle;
+    }
 }
