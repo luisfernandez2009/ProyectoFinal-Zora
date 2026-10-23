@@ -45,6 +45,18 @@ class UsuarioModel
         return $usuario;
     }
 
+    public function obtenerPorIdAdmin(int $id): ?array
+    {
+        $stmt = $this->conexion->prepare(
+            "SELECT id, nombre, apellido, correo, rol, activo, fecha_registro FROM usuario WHERE id = ? LIMIT 1"
+        );
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $usuario = $stmt->get_result()->fetch_assoc() ?: null;
+        $stmt->close();
+        return $usuario;
+    }
+
     /** Lista cuentas activas e inactivas sin exponer contraseñas ni hashes. */
     public function listarTodosAdmin(): array
     {

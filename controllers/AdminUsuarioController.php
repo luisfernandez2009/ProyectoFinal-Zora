@@ -38,6 +38,9 @@ class AdminUsuarioController
         if ((int)$id === (int)$_SESSION['usuario_id'] && $rol !== 'admin') {
             $this->redirigirConMensaje('No podés quitarte el rol de administrador.');
         }
+        if (!$this->usuarioModel->obtenerPorIdAdmin((int)$id)) {
+            $this->redirigirConMensaje('El usuario indicado no existe.');
+        }
 
         try {
             if (!$this->usuarioModel->cambiarRol((int)$id, $rol)) {
@@ -61,6 +64,9 @@ class AdminUsuarioController
         }
         if ((int)$id === (int)$_SESSION['usuario_id']) {
             $this->redirigirConMensaje('No podés desactivar tu propia cuenta.');
+        }
+        if (!$this->usuarioModel->obtenerPorIdAdmin((int)$id)) {
+            $this->redirigirConMensaje('El usuario indicado no existe.');
         }
 
         try {
