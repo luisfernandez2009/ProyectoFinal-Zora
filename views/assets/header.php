@@ -22,6 +22,7 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
     <nav aria-label="Navegación principal">
         <a href="index.php?pagina=home">Inicio</a>
         <a href="index.php?pagina=productos">Productos</a>
+        <?php if (($_SESSION['usuario_rol'] ?? '') === 'admin'): ?><a href="index.php?pagina=admin-usuarios">Usuarios</a><?php endif; ?>
         <?php if ($nombreUsuario): ?>
             <span>Hola, <?= htmlspecialchars($nombreUsuario, ENT_QUOTES, 'UTF-8') ?></span>
             <a href="index.php?pagina=logout">Cerrar sesión</a>
