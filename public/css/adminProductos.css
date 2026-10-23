@@ -30,7 +30,9 @@
 .form-admin-producto fieldset{border:1px solid #ddd;border-radius:8px;margin:16px 0;padding:16px}
 .form-admin-producto legend{font-weight:700;padding:0 7px}
 .stock-talles{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px}
-.stock-talles label{display:flex;flex-direction:column;gap:6px}
+.stock-talles{position:relative;z-index:1}
+.stock-talles label{display:flex;flex-direction:column;gap:6px;position:relative;z-index:2;cursor:text}
+.stock-talles input[type="number"]{position:relative;z-index:3;pointer-events:auto;cursor:text;user-select:auto;-webkit-user-select:auto;min-height:42px;touch-action:manipulation}
 .vista-previa-imagen img{display:block;width:130px;height:100px;object-fit:contain}
 .acciones-form-admin{display:flex;gap:14px;align-items:center;margin-top:20px}
 .acciones-form-admin a{color:teal}
