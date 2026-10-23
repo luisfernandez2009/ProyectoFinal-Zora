@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS producto (
     precio DECIMAL(10,2) NOT NULL,
     imagen VARCHAR(255),
     categoria_id INT UNSIGNED NOT NULL,
+    stock_minimo INT UNSIGNED NOT NULL DEFAULT 5,
     activo TINYINT(1) NOT NULL DEFAULT 1,
 
     INDEX idx_producto_categoria (categoria_id),
