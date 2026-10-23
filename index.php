@@ -6,6 +6,7 @@ require_once __DIR__ . '/config/conexion.php';
 require_once __DIR__ . '/models/ProductoModel.php';
 require_once __DIR__ . '/models/UsuarioModel.php';
 require_once __DIR__ . '/models/PedidoModel.php';
+require_once __DIR__ . '/models/PagoModel.php';
 require_once __DIR__ . '/controllers/ProductoController.php';
 require_once __DIR__ . '/controllers/UsuarioController.php';
 require_once __DIR__ . '/controllers/PedidoController.php';
@@ -92,6 +93,21 @@ switch ($paginaSolicitada) {
     case 'pedido-confirmado':
         $paginaCss = 'public/css/paginaListadoProductos.css';
         require __DIR__ . '/views/paginas/pedido_confirmado.php';
+        break;
+    case 'pago':
+        $pedidoController->pagar();
+        break;
+    case 'pago-resultado':
+        $pedidoController->resultadoPago();
+        break;
+    case 'mis-pedidos':
+        $pedidoController->misPedidos();
+        break;
+    case 'pedido-detalle':
+        $pedidoController->detallePedido();
+        break;
+    case 'factura':
+        $pedidoController->factura();
         break;
     default:
         http_response_code(404);

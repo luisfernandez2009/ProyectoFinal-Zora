@@ -14,7 +14,7 @@
         <label for="ciudad_entrega">Ciudad</label><input id="ciudad_entrega" name="ciudad_entrega" required maxlength="100">
         <label for="departamento_entrega">Departamento</label><input id="departamento_entrega" name="departamento_entrega" required maxlength="100">
         <label for="codigo_postal">Código postal</label><input id="codigo_postal" name="codigo_postal" maxlength="20">
-        <label for="metodo_pago">Método de pago</label><select id="metodo_pago" name="metodo_pago"><option value="Contra entrega">Contra entrega</option><option value="Transferencia">Transferencia</option></select>
+        <label for="metodo_pago">Método de pago</label><select id="metodo_pago" name="metodo_pago"><option value="Tarjeta (simulación)">Tarjeta (simulación)</option></select>
         <label for="observaciones">Observaciones</label><textarea id="observaciones" name="observaciones" maxlength="1000"></textarea>
         <button type="submit" id="confirmarCompra">Confirmar compra</button>
     </form>

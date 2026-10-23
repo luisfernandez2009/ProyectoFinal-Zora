@@ -122,7 +122,9 @@ CREATE TABLE IF NOT EXISTS pedido (
         'preparando',
         'enviado',
         'entregado',
-        'cancelado'
+        'cancelado',
+        'pagado',
+        'rechazado'
     ) NOT NULL DEFAULT 'pendiente',
 
     nombre_entrega VARCHAR(150) NOT NULL,
@@ -193,6 +195,25 @@ CREATE TABLE IF NOT EXISTS detalle_pedido (
 
     CONSTRAINT chk_detalle_precio
         CHECK (precio_unitario >= 0)
+) ENGINE=InnoDB;
+
+
+-- =========================================================
+-- 8. INTENTOS DE PAGO (simulación educativa)
+-- Nunca almacena número completo, vencimiento ni CVV.
+-- =========================================================
+CREATE TABLE IF NOT EXISTS pago (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT UNSIGNED NOT NULL,
+    monto DECIMAL(12,2) NOT NULL,
+    ultimos4 CHAR(4) NOT NULL,
+    resultado ENUM('aprobado', 'rechazado') NOT NULL,
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_pago_pedido (pedido_id),
+    CONSTRAINT fk_pago_pedido
+        FOREIGN KEY (pedido_id) REFERENCES pedido(id)
+        ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT chk_pago_monto CHECK (monto >= 0)
 ) ENGINE=InnoDB;
 
 -- =========================================================
