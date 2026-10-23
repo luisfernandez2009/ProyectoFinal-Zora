@@ -25,7 +25,8 @@ footer{
 
 .footer-tienda a,
 .footer-redes a,
-.footer-contacto a{
+.footer-contacto a,
+.footer-email-animado{
     display: block;
     margin-bottom: 10px;
     text-decoration: none;
@@ -35,7 +36,8 @@ footer{
 
 .footer-tienda a:hover,
 .footer-redes a:hover,
-.footer-contacto a:hover{
+.footer-contacto a:hover,
+.footer-email-animado:hover{
     color: white;
 	transform: scale(1.1);
 }
