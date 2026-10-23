@@ -5,6 +5,7 @@ class PedidoController
 {
     private PedidoModel $pedidoModel;
     private PagoModel $pagoModel;
+    private array $departamentos = ['Artigas', 'Canelones', 'Cerro Largo', 'Colonia', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Montevideo', 'Paysandú', 'Río Negro', 'Rivera', 'Rocha', 'Salto', 'San José', 'Soriano', 'Tacuarembó', 'Treinta y Tres'];
     public function __construct(mysqli $conexion) { $this->pedidoModel = new PedidoModel($conexion); $this->pagoModel = new PagoModel($conexion); }
 
     public function confirmarPedido(): void
@@ -30,8 +31,25 @@ class PedidoController
             'metodo_pago'=>trim((string)($_POST['metodo_pago'] ?? '')),
             'observaciones'=>trim((string)($_POST['observaciones'] ?? ''))
         ];
-        if ($datos['nombre']==='' || $datos['direccion']==='' || $datos['ciudad']==='' || $datos['departamento']==='') {
-            $_SESSION['error_formulario'] = 'Completá nombre, dirección, ciudad y departamento para la entrega.';
+        $datos['telefono'] = preg_replace('/[^0-9]/', '', $datos['telefono']);
+        $erroresEnvio = [];
+        if (!$this->largoEntre($datos['nombre'], 3, 60)) {
+            $erroresEnvio[] = 'El nombre de quien recibe debe tener entre 3 y 60 caracteres.';
+        }
+        if (!$this->largoEntre($datos['direccion'], 5, 100)) {
+            $erroresEnvio[] = 'La dirección debe tener entre 5 y 100 caracteres.';
+        }
+        if (!$this->largoEntre($datos['ciudad'], 2, 50)) {
+            $erroresEnvio[] = 'La ciudad debe tener entre 2 y 50 caracteres.';
+        }
+        if (!in_array($datos['departamento'], $this->departamentos, true)) {
+            $erroresEnvio[] = 'Elegí un departamento válido de la lista.';
+        }
+        if (strlen($datos['telefono']) < 8 || strlen($datos['telefono']) > 12) {
+            $erroresEnvio[] = 'El teléfono debe tener entre 8 y 12 dígitos.';
+        }
+        if ($erroresEnvio) {
+            $_SESSION['error_formulario'] = implode(' ', $erroresEnvio);
             header('Location: index.php?pagina=carrito'); exit;
         }
         try {
@@ -170,6 +188,12 @@ class PedidoController
             exit;
         }
         return $pedido;
+    }
+
+    private function largoEntre(string $texto, int $minimo, int $maximo): bool
+    {
+        $largo = function_exists('mb_strlen') ? mb_strlen($texto, 'UTF-8') : strlen($texto);
+        return $largo >= $minimo && $largo <= $maximo;
     }
 
     private function requerirLogin(): void
