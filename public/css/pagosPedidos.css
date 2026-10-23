@@ -1,0 +1,28 @@
+.pantalla-pago,.resultado-pago,.mis-pedidos,.detalle-pedido,.factura{max-width:1100px;margin:35px auto 80px;padding:0 20px;box-sizing:border-box}
+.pantalla-pago h1,.resultado-pago h1,.mis-pedidos h1,.detalle-pedido h1{text-align:center}
+.pantalla-pago>p,.resultado-pago>p{text-align:center}
+.resumen-pago,.form-pago,.aviso-simulacion,.factura{background:#fff;border-radius:12px;padding:22px;margin:20px auto;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.resumen-pago{max-width:760px}.resumen-pago li{margin:10px 0}.resumen-pago li strong{float:right}
+.total-pago{text-align:right;font-size:1.3rem;font-weight:700}
+.aviso-simulacion{max-width:760px;background:#fff5d8;line-height:1.6}
+.form-pago{display:flex;flex-direction:column;gap:9px;max-width:760px}
+.form-pago label{font-weight:700;margin-top:8px}
+.form-pago input{padding:12px;border:1px solid #bbb;border-radius:8px;font:inherit}
+.form-pago button,.acciones-factura button{margin-top:12px;padding:13px;border:0;border-radius:8px;background:LightSeaGreen;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.form-pago button:hover,.acciones-factura button:hover{background:teal}
+.errores-pago{max-width:760px;color:#9b1c1c;background:#fff0f0;padding:14px 36px;border-radius:8px;margin:20px auto}
+.resultado-pago{text-align:center;padding-top:30px;padding-bottom:30px}
+.resultado-pago a,.mis-pedidos>p a,.detalle-pedido>p a,.factura a{color:teal;font-weight:700}
+.acciones-pago{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.acciones-pago a{padding:11px 16px;background:LightSeaGreen;color:#fff;border-radius:7px;text-decoration:none}
+.tabla-pedidos-contenedor{overflow-x:auto;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1);margin:20px 0}
+.tabla-pedidos{width:100%;min-width:650px;border-collapse:collapse}
+.tabla-pedidos th,.tabla-pedidos td{padding:13px;border-bottom:1px solid #e5e5e5;text-align:left}
+.tabla-pedidos th{background:LightSeaGreen}
+.acciones-pedido{display:flex;gap:10px;flex-wrap:wrap}.acciones-pedido a{color:teal;font-weight:700}
+.factura{padding:36px;box-shadow:0 0 0 1px #ddd}
+.factura-cabecera{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.factura-cabecera h1{margin-bottom:4px}.total-factura{text-align:right;margin-top:26px}
+.acciones-factura{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:30px}
+@media print{body{background:#fff!important}.factura{box-shadow:none;margin:0;max-width:none;padding:0}.factura .acciones-factura,header,footer{display:none!important}}
+@media(max-width:600px){.pantalla-pago,.resultado-pago,.mis-pedidos,.detalle-pedido,.factura{padding:0 12px}.resumen-pago,.form-pago,.aviso-simulacion{padding:16px}.factura{padding:18px}}
