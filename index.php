@@ -10,6 +10,7 @@ require_once __DIR__ . '/controllers/ProductoController.php';
 require_once __DIR__ . '/controllers/UsuarioController.php';
 require_once __DIR__ . '/controllers/PedidoController.php';
 require_once __DIR__ . '/controllers/AdminUsuarioController.php';
+require_once __DIR__ . '/controllers/AdminProductoController.php';
 
 // Sincroniza rol y estado con la base en cada petición: una cuenta desactivada
 // pierde el acceso incluso si ya tenía una sesión abierta.
@@ -67,6 +68,18 @@ switch ($paginaSolicitada) {
         break;
     case 'admin-usuario-activo':
         (new AdminUsuarioController($conexion))->cambiarActivo();
+        break;
+    case 'admin-productos':
+        (new AdminProductoController($conexion))->listar();
+        break;
+    case 'admin-producto-formulario':
+        (new AdminProductoController($conexion))->formulario();
+        break;
+    case 'admin-producto-guardar':
+        (new AdminProductoController($conexion))->guardar();
+        break;
+    case 'admin-producto-estado':
+        (new AdminProductoController($conexion))->cambiarEstado();
         break;
     case 'carrito':
         $paginaCss = 'public/css/paginaListadoProductos.css';
