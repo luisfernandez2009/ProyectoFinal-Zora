@@ -1,0 +1,31 @@
+/* Tipografía compartida: Nunito Sans es una familia disponible en Google Fonts.
+   Se carga después del CSS de cada página para evitar que reglas antiguas de Yuyu
+   (que no es una familia de Google Fonts) dejen textos con una fuente de reemplazo. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap');
+
+html { font-size: 16px; }
+body {
+    font-family: 'Nunito Sans', Arial, sans-serif !important;
+    font-size: 18px;
+    line-height: 1.5;
+}
+body h1, body h2, body h3, body h4, body p, body a,
+body button, body input, body select, body textarea, body label,
+body span, body li, body small {
+    font-family: 'Nunito Sans', Arial, sans-serif !important;
+}
+header { font-size: 18px; }
+header h2 { font-size: 24px; }
+header nav a, header nav span { font-size: 17px; }
+footer { font-size: 17px; }
+footer h2 { font-size: 26px; }
+footer h3 { font-size: 20px; }
+button, input, select, textarea { font-size: inherit; }
+
+@media (max-width: 600px) {
+    body { font-size: 16px; }
+    header { font-size: 16px; }
+    header h2 { font-size: 20px; }
+    header nav a, header nav span { font-size: 16px; }
+    footer { font-size: 16px; }
+}
