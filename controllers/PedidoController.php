@@ -107,7 +107,7 @@ class PedidoController
             }
         }
 
-        $paginaCss = 'public/css/paginaListadoProductos.css';
+        $paginaCss = 'public/css/pagosPedidos.css';
         require __DIR__ . '/../views/paginas/pago.php';
     }
 
@@ -121,7 +121,7 @@ class PedidoController
             exit;
         }
         $detalle = $this->pedidoModel->obtenerDetalle((int)$pedido['id']);
-        $paginaCss = 'public/css/paginaListadoProductos.css';
+        $paginaCss = 'public/css/pagosPedidos.css';
         require __DIR__ . '/../views/paginas/pago_resultado.php';
     }
 
@@ -129,7 +129,7 @@ class PedidoController
     {
         $this->requerirLogin();
         $pedidos = $this->pedidoModel->listarPorUsuario((int)$_SESSION['usuario_id']);
-        $paginaCss = 'public/css/paginaListadoProductos.css';
+        $paginaCss = 'public/css/pagosPedidos.css';
         require __DIR__ . '/../views/paginas/mis_pedidos.php';
     }
 
@@ -138,7 +138,7 @@ class PedidoController
         $this->requerirLogin();
         $pedido = $this->obtenerPedidoDelUsuario();
         $detalle = $this->pedidoModel->obtenerDetalle((int)$pedido['id']);
-        $paginaCss = 'public/css/paginaListadoProductos.css';
+        $paginaCss = 'public/css/pagosPedidos.css';
         require __DIR__ . '/../views/paginas/pedido_detalle.php';
     }
 
@@ -152,7 +152,7 @@ class PedidoController
             exit;
         }
         $detalle = $this->pedidoModel->obtenerDetalle((int)$pedido['id']);
-        $paginaCss = 'public/css/paginaListadoProductos.css';
+        $paginaCss = 'public/css/pagosPedidos.css';
         require __DIR__ . '/../views/paginas/factura.php';
     }
 
@@ -164,7 +164,7 @@ class PedidoController
             : null;
         if (!$pedido) {
             http_response_code(403);
-            $paginaCss = 'public/css/paginaListadoProductos.css';
+            $paginaCss = 'public/css/pagosPedidos.css';
             require __DIR__ . '/../views/paginas/sin_permiso.php';
             exit;
         }
