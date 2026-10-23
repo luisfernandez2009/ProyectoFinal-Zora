@@ -9,7 +9,8 @@ class ProductoController
     public function mostrarCatalogo(): void
     {
         $categoria = filter_input(INPUT_GET, 'categoria', FILTER_VALIDATE_INT);
-        $busqueda = isset($_GET['buscar']) ? trim((string)$_GET['buscar']) : null;
+        $busqueda = trim((string)($_GET['q'] ?? $_GET['buscar'] ?? ''));
+        $busqueda = function_exists('mb_substr') ? mb_substr($busqueda, 0, 50, 'UTF-8') : substr($busqueda, 0, 50);
         $listaDeProductos = $this->productoModel->listarProductos($categoria ?: null, $busqueda);
         $listaDeCategorias = $this->productoModel->listarCategorias();
         $paginaCss = 'public/css/paginaListadoProductos.css';

@@ -76,7 +76,7 @@ class UsuarioController
         $usuario = $this->usuarioModel->buscarPorCorreo($correo);
         if (!$usuario || !password_verify($password, $usuario['password_hash'])) {
             $_SESSION['error_formulario'] = 'Correo o contraseña incorrectos.';
-            header('Location: index.php?pagina=login'); exit;
+            header('Location: index.php?pagina=login' . ((($_POST['redirect'] ?? 'home') === 'carrito') ? '&redirect=carrito' : '')); exit;
         }
         session_regenerate_id(true);
         $_SESSION['usuario_id'] = (int)$usuario['id'];

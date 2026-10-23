@@ -280,3 +280,9 @@ html{
 
 /* Separación real entre el contenido del catálogo y el footer */
 main.contenido-principal { padding-bottom: 80px; box-sizing: border-box; }
+
+
+/* Mensajes y resumen de búsqueda del catálogo */
+.resumen-busqueda { color: #555; margin: 20px 0; }
+.resumen-busqueda a { color: teal; font-weight: 700; text-decoration: underline; }
+.sin-resultados { padding: 16px; background: #fff3cd; border-radius: 6px; text-align: center; }

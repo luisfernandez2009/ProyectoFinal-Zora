@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Yuyu&display=swap');
+
 /* Login: comparte el mismo header/footer y fondo que el catálogo y el carrito */
 html, body { min-height: 100%; background-color: #FAEBD7 !important; }
 body { margin: 0; font-family: 'Yuyu', Arial, sans-serif; }
