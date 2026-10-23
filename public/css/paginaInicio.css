@@ -1,0 +1,346 @@
+
+body {
+	background-color: AntiqueWhite;
+}
+
+h2 {
+	font-family: 'Yuyu', Arial, sans-serif;
+	font-weight: 700;
+}
+
+#mensajeCarritoHeader{
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    background: white;
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,.15);
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.banner {
+	width:100%;
+    height:auto;
+    display:block;
+    border-radius:8px;
+    box-shadow:0 2px 10px rgba(0,0,0.08);
+}
+
+.contenedor-banner{
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.texto-banner{
+    position:absolute;
+    top:50%;
+    left:8%;
+    transform:translateY(-50%);
+    color:Black;
+}
+
+.texto-banner a{
+    background:black;
+    color:white;
+    padding:15px 35px;
+    border-radius:8px;
+    text-decoration:none;
+    display:inline-block;
+    margin-top:15px;
+    transition:.3s;
+}
+
+.texto-banner a:hover{
+    background:#333;
+}
+
+.texto-banner h1{
+	font-family: 'Yuyu', Arial, sans-serif;
+	font-weight: 700;
+    font-size:55px;
+}
+
+.texto-banner p{
+	font-family: 'Yuyu', Arial, sans-serif;
+	font-weight: 700;
+    font-size:40px;
+}
+
+.volver-arriba{
+    text-align:center;
+    margin:60px 0;
+}
+
+.volver-arriba a{
+    display:inline-block;
+    background-color:LightSeaGreen;
+    color:white;
+    padding:15px 30px;
+    border-radius:10px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.volver-arriba a:hover{
+    background-color:teal;
+    transform:scale(1.08);
+}
+
+.productos{
+    margin:80px 0;
+}
+
+.productos h2{
+    text-align:center;
+    font-size:40px;
+}
+
+.contenedor-productos{
+	display: flex;
+    justify-content: space-around;
+    gap: 30px;
+	flex-wrap: wrap;
+}
+
+.producto img{
+    width:200px;
+    height:auto;
+    transition:0.3s;
+}
+
+.producto {
+	width:220px;
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    transition:0.3s;
+	box-shadow: 0 2px 10px rgba(0,0,0.12);
+}
+
+.producto:hover {
+	transform:translateY(-10px);
+    box-shadow:0 18px 35px rgba(0,0,0.22);
+}
+
+.producto:hover img{
+    transform: scale(1.05);
+}
+
+.producto a{
+    display: inline-block;
+    background-color: LightSeaGreen;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.producto a:hover{
+	transform:scale(1.05);
+	background-color: teal;
+}
+
+.contenedor-ventajas{
+    display:flex;
+    justify-content:space-around;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.ventajas{
+    margin:80px 0;
+}
+
+.ventajas h2{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.ventaja{
+    width:250px;
+    text-align:center;
+	transition:0.3s;
+	position:relative;
+	box-shadow: 0 2px 10px rgba(0,0,0.12);
+}
+
+.ventaja img{
+    width:70px;
+    margin-bottom:20px;
+	transition:0.3s;
+}
+
+.ventaja:hover img{
+	transform:scale(1.15);
+}
+
+.ventaja h3{
+    margin-bottom:15px;
+}
+
+.ventaja p{
+    color:#555;
+    line-height:1.5;
+}
+
+.ventaja{
+    transition:0.3s;
+}
+
+.ventaja:hover{
+    transform:translateY(-8px);
+    color:LightSeaGreen;
+	border-bottom: 3px solid LightSeaGreen;
+}
+
+.reseñas{
+    margin:80px 0;
+}
+
+.reseñas h2{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+}
+
+.contenedor-reseñas{
+    display:flex;
+    justify-content:space-around;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.reseña{
+    width:300px;
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0.12);
+    transition:0.3s;
+}
+
+.reseña img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:50%;
+    border:4px solid LightSeaGreen;
+    transition:.3s;
+}
+
+.reseña:hover img{
+    transform:scale(1.08);
+}
+
+.estrellas{
+    color:gold;
+    font-size:22px;
+    margin:15px 0;
+}
+
+.reseña p{
+    line-height:1.6;
+}
+
+.reseña:hover{
+    transform:translateY(-10px);
+    box-shadow:0 18px 35px rgba(0,0,0.22);
+}
+
+.productos,
+.ventajas,
+.reseñas{
+    margin:100px 0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+.oculto{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.mostrar{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Ajustes responsive para celulares */
+
+@media (max-width: 600px) {
+
+	.contenedor-banner {
+        overflow: hidden;
+    }
+
+    .texto-banner {
+        left: 5%;
+        max-width: 90%;
+    }
+
+    .texto-banner h1 {
+        font-size: clamp(16px, 4.5vw, 28px);
+        margin: 0 0 6px;
+    }
+
+    .texto-banner p {
+        font-size: clamp(11px, 2.8vw, 17px);
+        margin: 4px 0;
+    }
+
+    .texto-banner a {
+        font-size: clamp(10px, 2.5vw, 14px);
+        padding: 7px 12px;
+        margin-top: 6px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+ }
+
+
+/* Ajustes visuales MVC */
+body{margin:0;background-color:AntiqueWhite}.contenido-principal{padding-top:24px}
+.contenedor-banner{margin:0 20px 50px}.banner-secundario{margin-top:35px}
+.texto-banner-secundario{left:8%;right:auto;text-align:left}
+.texto-banner-secundario h2{font-size:clamp(28px,3.2vw,48px);margin:0 0 12px}
+.texto-banner-secundario p{font-size:clamp(18px,2.4vw,32px)}
+.contenedor-productos .producto{box-sizing:border-box;flex:0 1 260px;min-width:0;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.contenedor-productos .producto>a.imagen-producto-home{display:block;margin:0 auto;padding:0;background:transparent;border:0;border-radius:0;line-height:0}
+.contenedor-productos .producto>a.imagen-producto-home img{display:block;width:100%;max-width:200px;height:180px;object-fit:contain;margin:0 auto}
+.contenedor-productos .producto>a.enlace-detalle-home{display:inline-block;background:LightSeaGreen;color:white;padding:10px 20px;border:0;border-radius:8px;line-height:normal}
+.contenedor-productos .producto>a.enlace-detalle-home:hover{background:teal}
+.ventaja{box-sizing:border-box;padding:22px;border-radius:10px;background:rgba(255,255,255,.45);box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.ventaja:hover{border-bottom:3px solid LightSeaGreen}.reseña{box-sizing:border-box;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.productos,.ventajas,.reseñas{margin:90px 20px}
+@media(max-width:700px){.contenedor-banner{margin-left:10px;margin-right:10px}.texto-banner-secundario{right:auto;left:5%;text-align:left}.contenedor-productos .producto{flex-basis:min(100%,290px)}.productos,.ventajas,.reseñas{margin:55px 12px}}
+
+/* Correcciones solicitadas: tarjetas, banner y espacios */
+.contenido-principal { padding: 28px 20px 70px; box-sizing: border-box; }
+.contenedor-banner { margin-bottom: 50px; }
+.banner-secundario { margin-top: 70px; }
+.contenedor-productos .producto {
+  border: 1px solid LightSeaGreen;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+.contenedor-productos .producto:hover { box-shadow: 0 12px 25px rgba(0,0,0,.22); }
+.productos, .ventajas, .reseñas { margin: 80px 0; }
+.reseñas { margin-bottom: 90px; }
+@media (max-width:700px) {
+  .contenido-principal { padding: 18px 12px 48px; }
+  .banner-secundario { margin-top: 48px; }
+}

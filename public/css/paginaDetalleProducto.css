@@ -1,0 +1,170 @@
+
+body {
+	background-color: AntiqueWhite;
+}
+
+h2 {
+	font-family: 'Yuyu', Arial, sans-serif;
+	font-weight: 700;
+}
+
+.volver{
+    display:inline-block;
+    margin:30px;
+    text-decoration:none;
+    color:teal;
+    font-weight: 700;
+    transition:0.3s;
+}
+
+.volver:hover{
+    transform:translateX(-5px);
+}
+
+.detalle-producto{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+	padding:20px;
+    display:flex;
+    gap:60px;
+    align-items:flex-start;
+}
+
+.galeria{
+    flex:1;
+}
+
+.info-producto{
+    flex:1.2;
+}
+
+.info-producto h1{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.precio{
+    font-size:36px;
+    font-weight: 700;
+    color:teal;
+    margin:20px 0;
+}
+
+.estrellas{
+    color:gold;
+    font-size:24px;
+}
+
+.descripcion{
+    line-height:1.7;
+    color:#444;
+    margin:20px 0;
+}
+
+.stock{
+    color:green;
+    font-weight: 700;
+    margin-bottom:25px;
+}
+
+.talle{
+    width:50px;
+    height:50px;
+    border:2px solid LightSeaGreen;
+    background:white;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.talle.activo{
+    background-color:LightSeaGreen;
+    color:white;
+    border-color:LightSeaGreen;
+}
+
+.talle:hover{
+    background:LightSeaGreen;
+    color:white;
+}
+
+#mensajeCarrito{
+    margin-top:20px;
+    font-weight: 700;
+    color:green;
+    opacity:0;
+    transition:.3s;
+}
+
+.agregar-carrito{
+    margin-top:25px;
+    background:LightSeaGreen;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.agregar-carrito:hover{
+    background:teal;
+    transform:translateY(-3px);
+}
+
+.miniatura{
+    border:3px solid transparent;
+}
+
+.miniatura.activa{
+    border-color:LightSeaGreen;
+}
+
+.imagen-principal{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0.12);
+}
+
+.miniaturas img{
+    width:90px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+	box-shadow:0 5px 20px rgba(0,0,0.6);
+}
+
+.miniaturas{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.miniaturas img:hover{
+    transform:scale(1.08);
+	box-shadow:0 5px 20px rgba(0,0,0.16);
+}
+
+
+@media(max-width:900px){
+    .detalle-producto{
+        flex-direction:column;
+    }
+    .galeria,
+    .info-producto{
+        width:100%;
+    }
+}
+
+.descripcion-completa {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+}
+
+.descripcion-completa ul {
+    padding-left: 25px;
+}
