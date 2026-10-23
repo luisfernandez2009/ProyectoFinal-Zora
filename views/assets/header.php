@@ -8,15 +8,16 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="public/img/logos/favicon.png" type="image/png">
-    <link rel="stylesheet" href="public/css/header.css?v=20261023">
-    <link rel="stylesheet" href="public/css/footer.css?v=20261023">
-    <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>?v=20261023"><?php endif; ?>
+    <link rel="stylesheet" href="public/css/header.css?v=20261024">
+    <link rel="stylesheet" href="public/css/footer.css?v=20261024">
+    <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>?v=20261024"><?php endif; ?>
+    <link rel="stylesheet" href="public/css/fuentes.css?v=20261024">
     <title>Zora | Más que calzados, tu esencia</title>
 </head>
 <body>
 <header>
     <div class="logo">
-        <a href="index.php?pagina=home"><img src="public/img/logos/ZoraLogo.png" alt="Logo de Zora"></a>
+        <a href="index.php?pagina=home" aria-label="Ir al inicio"><img src="public/img/logos/ZoraLogo.png" alt="Logo de Zora"></a>
         <h2>Zora: Más que calzados, tu esencia.</h2>
     </div>
     <nav aria-label="Navegación principal">
