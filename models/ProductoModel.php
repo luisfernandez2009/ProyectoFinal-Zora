@@ -199,6 +199,29 @@ class ProductoModel
         $stmt->close();
     }
 
+    public function listarImagenesAdmin(int $idProducto): array
+    {
+        $stmt = $this->conexion->prepare("SELECT id, ruta, orden FROM producto_imagen WHERE producto_id = ? ORDER BY orden, id");
+        $stmt->bind_param('i', $idProducto);
+        $stmt->execute();
+        $imagenes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $imagenes;
+    }
+
+    public function agregarImagenesAdmin(int $idProducto, array $rutas): void
+    {
+        $stmt = $this->conexion->prepare("INSERT INTO producto_imagen (producto_id, ruta, orden) VALUES (?, ?, ?)");
+        $orden = (int)$this->conexion->query("SELECT COALESCE(MAX(orden), 0) + 1 AS siguiente FROM producto_imagen WHERE producto_id = " . (int)$idProducto)->fetch_assoc()['siguiente'];
+        foreach ($rutas as $ruta) {
+            $ruta = (string)$ruta;
+            $stmt->bind_param('isi', $idProducto, $ruta, $orden);
+            $stmt->execute();
+            $orden++;
+        }
+        $stmt->close();
+    }
+
     public function cambiarActivoAdmin(int $idProducto, int $activo): bool
     {
         $stmt = $this->conexion->prepare("UPDATE producto SET activo = ? WHERE id = ?");
