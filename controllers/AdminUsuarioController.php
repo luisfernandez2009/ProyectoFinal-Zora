@@ -30,7 +30,7 @@ class AdminUsuarioController
         $this->validarPeticion();
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $rol = (string)($_POST['rol'] ?? '');
-        $rolesValidos = ['cliente', 'admin'];
+        $rolesValidos = ['cliente', 'moderador', 'admin'];
 
         if (!$id || $id < 1 || !in_array($rol, $rolesValidos, true)) {
             $this->redirigirConMensaje('Los datos enviados no son válidos.');
