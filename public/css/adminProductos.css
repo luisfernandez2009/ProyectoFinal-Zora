@@ -32,7 +32,10 @@
 .stock-talles{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px}
 .stock-talles{position:relative;z-index:1}
 .stock-talles label{display:flex;flex-direction:column;gap:6px;position:relative;z-index:2;cursor:text}
-.stock-talles input[type="number"]{position:relative;z-index:3;pointer-events:auto;cursor:text;user-select:auto;-webkit-user-select:auto;min-height:42px;touch-action:manipulation}
+.stock-talles input[type="number"],.stock-talles input[type="text"]{position:relative;z-index:3;pointer-events:auto;cursor:text;user-select:auto;-webkit-user-select:auto;min-height:42px;touch-action:manipulation}
+.imagenes-adicionales-actuales{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:10px 0}
+.imagenes-adicionales-actuales p{width:100%;margin:0}
+.imagenes-adicionales-actuales img{width:100px;height:85px;object-fit:contain;border:1px solid #ddd;border-radius:7px;padding:5px;background:#fff}
 .vista-previa-imagen img{display:block;width:130px;height:100px;object-fit:contain}
 .acciones-form-admin{display:flex;gap:14px;align-items:center;margin-top:20px}
 .acciones-form-admin a{color:teal}

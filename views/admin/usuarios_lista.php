@@ -19,7 +19,7 @@
                     <td><?= (int)$usuario['cantidad_pedidos'] ?></td>
                     <td><?= !empty($usuario['fecha_registro']) ? htmlspecialchars(date('d/m/Y', strtotime($usuario['fecha_registro'])), ENT_QUOTES, 'UTF-8') : '—' ?></td>
                     <td class="acciones-usuario">
-                        <form action="index.php?pagina=admin-usuario-rol" method="post">
+                        <form action="index.php?pagina=admin-usuario-rol" method="post" class="form-cambio-rol" data-usuario="<?= htmlspecialchars($usuario['nombre'] . ' ' . $usuario['apellido'], ENT_QUOTES, 'UTF-8') ?>" data-rol-actual="<?= htmlspecialchars($usuario['rol'], ENT_QUOTES, 'UTF-8') ?>">
                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_admin_usuarios'], ENT_QUOTES, 'UTF-8') ?>">
                             <input type="hidden" name="id" value="<?= (int)$usuario['id'] ?>">
                             <label class="solo-lectores" for="rol-<?= (int)$usuario['id'] ?>">Rol</label>
@@ -45,4 +45,21 @@
         </table>
     </div>
 </section>
+<script>
+document.querySelectorAll('.form-cambio-rol').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+        const selector = form.querySelector('select[name="rol"]');
+        const anterior = form.dataset.rolActual;
+        const nuevo = selector.options[selector.selectedIndex].text;
+        if (selector.value === anterior) {
+            event.preventDefault();
+            alert('No cambiaste el rol de esta cuenta.');
+            return;
+        }
+        const usuario = form.dataset.usuario;
+        const confirmar = confirm(`¿Confirmás cambiar el rol de ${usuario} de "${anterior}" a "${nuevo}"? Esta acción modificará sus permisos en la tienda.`);
+        if (!confirmar) event.preventDefault();
+    });
+});
+</script>
 <?php require __DIR__ . '/../assets/footer.php'; ?>
