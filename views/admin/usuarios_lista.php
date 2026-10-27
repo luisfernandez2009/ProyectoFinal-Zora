@@ -25,6 +25,7 @@
                             <label class="solo-lectores" for="rol-<?= (int)$usuario['id'] ?>">Rol</label>
                             <select id="rol-<?= (int)$usuario['id'] ?>" name="rol">
                                 <option value="cliente" <?= $usuario['rol'] === 'cliente' ? 'selected' : '' ?>>Cliente</option>
+                                <option value="moderador" <?= $usuario['rol'] === 'moderador' ? 'selected' : '' ?>>Moderador (productos)</option>
                                 <option value="admin" <?= $usuario['rol'] === 'admin' ? 'selected' : '' ?>>Admin</option>
                             </select>
                             <button type="submit" <?= $esActual ? 'disabled title="No podés modificar tu propio rol"' : '' ?>>Guardar rol</button>
