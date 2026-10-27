@@ -24,6 +24,25 @@ a:hover {
     background-color: transparent;
     text-decoration: underline;
 }
+
+/* Contraste claro y legible para los enlaces de navegación sobre el header turquesa. */
+header nav a:not(#carritoHeader) {
+    display: inline-block;
+    padding: 7px 9px;
+    border-radius: 8px;
+    transition: color .2s ease, background-color .2s ease, text-decoration-color .2s ease;
+}
+header nav a:not(#carritoHeader):hover,
+header nav a:not(#carritoHeader):focus-visible {
+    color: #ffffff;
+    background-color: #164e4b;
+    text-decoration: underline;
+    outline: none;
+}
+header nav a:not(#carritoHeader):active {
+    color: #ffffff;
+    background-color: #103b39;
+}
 a:active {
     color: MediumPurple;
     background-color: transparent;
