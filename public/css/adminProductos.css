@@ -41,3 +41,20 @@
 .acciones-form-admin a{color:teal}
 .aviso-admin{padding:12px 16px;border-radius:7px;background:#e8f6ef;color:#195b34}
 @media(max-width:600px){.form-admin-producto form{padding:18px}.admin-productos,.form-admin-producto{padding:0 12px}.acciones-form-admin{flex-direction:column;align-items:stretch}}
+
+
+/* Bloques separados para administrar la imagen principal y las miniaturas. */
+.form-admin-producto .grupo-imagenes{display:flex;flex-direction:column;gap:10px;background:#fcfcfc;border:1px solid #d8e4e2;border-radius:10px;padding:18px;margin:16px 0}
+.form-admin-producto .grupo-imagenes legend{padding:0 8px;color:#176b67;font-size:1.05rem}
+.form-admin-producto .grupo-imagenes>p{margin:0;color:#555;font-weight:400}
+.form-admin-producto .grupo-imagenes>label{margin-top:4px}
+.form-admin-producto .grupo-imagenes input[type="file"]{width:100%;max-width:100%;box-sizing:border-box;background:#fff}
+.form-admin-producto .vista-previa-imagen{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin:8px 0 0;font-weight:600}
+.form-admin-producto .vista-previa-imagen img{display:block;width:180px!important;max-width:100%;height:150px!important;object-fit:contain;background:#fff;border:1px solid #ddd;border-radius:8px;padding:8px;box-sizing:border-box}
+.form-admin-producto .imagenes-adicionales-actuales{display:block;padding:12px 0 0}
+.form-admin-producto .imagenes-adicionales-actuales>p{margin:0 0 10px;font-weight:600}
+.form-admin-producto .galeria-miniaturas-admin{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px}
+.form-admin-producto .miniatura-admin{width:112px;height:100px;flex:0 0 112px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid #d7d7d7;border-radius:8px;padding:6px;box-sizing:border-box}
+.form-admin-producto .miniatura-admin img{display:block!important;width:100%!important;height:100%!important;max-width:100%;max-height:100%;object-fit:contain}
+.form-admin-producto .sin-miniaturas-admin{margin:8px 0 0;color:#777;font-size:.95rem;font-weight:400}
+@media(max-width:600px){.form-admin-producto .grupo-imagenes{padding:14px}.form-admin-producto .miniatura-admin{width:88px;height:82px;flex-basis:88px}}
