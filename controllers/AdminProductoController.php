@@ -41,7 +41,7 @@ class AdminProductoController
         $talles = $this->productoModel->listarStocksAdmin((int)$producto['id']);
         if ((int)$producto['id'] === 0) {
             $talles = $this->productoModel->listarTallesAdmin();
-            foreach ($talles as &$talle) { $talle['stock'] = 0; }
+            foreach ($talles as &$talle) { $talle['stock'] = 5; }
             unset($talle);
         }
         $stocks = [];
