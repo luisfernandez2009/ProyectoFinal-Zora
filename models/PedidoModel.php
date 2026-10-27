@@ -117,4 +117,60 @@ class PedidoModel
         $stmt->close();
         return $detalle;
     }
+
+    /** Pedidos para el panel: filtros permitidos desde el controlador. */
+    public function listarAdmin(array $filtros = []): array
+    {
+        $sql = "SELECT p.id, p.fecha_pedido, p.total, p.estado, p.estado_envio,
+                       u.nombre AS cliente_nombre, u.apellido AS cliente_apellido
+                FROM pedido p INNER JOIN usuario u ON u.id = p.usuario_id WHERE 1=1";
+        $tipos = '';
+        $params = [];
+        foreach (['estado' => 'p.estado', 'estado_envio' => 'p.estado_envio'] as $clave => $columna) {
+            if (!empty($filtros[$clave])) { $sql .= " AND {$columna} = ?"; $tipos .= 's'; $params[] = $filtros[$clave]; }
+        }
+        if (!empty($filtros['desde'])) { $sql .= " AND p.fecha_pedido >= ?"; $tipos .= 's'; $params[] = $filtros['desde'] . ' 00:00:00'; }
+        if (!empty($filtros['hasta'])) { $sql .= " AND p.fecha_pedido < DATE_ADD(?, INTERVAL 1 DAY)"; $tipos .= 's'; $params[] = $filtros['hasta']; }
+        $sql .= " ORDER BY p.fecha_pedido DESC, p.id DESC";
+        if (!empty($filtros['limite'])) $sql .= " LIMIT " . max(1, min(100, (int)$filtros['limite']));
+        $stmt = $this->conexion->prepare($sql);
+        if ($tipos !== '') $stmt->bind_param($tipos, ...$params);
+        $stmt->execute(); $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC); $stmt->close();
+        return $rows;
+    }
+
+    public function obtenerParaAdmin(int $pedidoId): ?array
+    {
+        $stmt = $this->conexion->prepare(
+            "SELECT p.*, u.nombre AS cliente_nombre, u.apellido AS cliente_apellido, u.correo AS cliente_correo
+             FROM pedido p INNER JOIN usuario u ON u.id = p.usuario_id WHERE p.id = ? LIMIT 1"
+        );
+        $stmt->bind_param('i', $pedidoId); $stmt->execute();
+        $pedido = $stmt->get_result()->fetch_assoc() ?: null; $stmt->close();
+        return $pedido;
+    }
+
+    public function cambiarEstadoEnvio(int $pedidoId, string $estadoActual, string $estadoNuevo): bool
+    {
+        $stmt = $this->conexion->prepare(
+            "UPDATE pedido SET estado_envio = ? WHERE id = ? AND estado = 'pagado' AND estado_envio = ?"
+        );
+        $stmt->bind_param('sis', $estadoNuevo, $pedidoId, $estadoActual);
+        $stmt->execute(); $ok = $stmt->affected_rows === 1; $stmt->close();
+        return $ok;
+    }
+
+    public function resumenPorEstado(string $desde, string $hasta): array
+    {
+        $stmt = $this->conexion->prepare(
+            "SELECT estado, COUNT(*) AS cantidad, COALESCE(SUM(total),0) AS total
+             FROM pedido WHERE fecha_pedido >= ? AND fecha_pedido < DATE_ADD(?, INTERVAL 1 DAY)
+             GROUP BY estado"
+        );
+        $desdeInicio = $desde . ' 00:00:00';
+        $stmt->bind_param('ss', $desdeInicio, $hasta); $stmt->execute();
+        $rows = $stmt->get_result()->fetch_all(MYSQLI_ASSOC); $stmt->close();
+        return $rows;
+    }
+
 }

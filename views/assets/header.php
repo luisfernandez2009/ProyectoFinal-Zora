@@ -8,8 +8,8 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="public/img/logos/favicon.png" type="image/png">
-    <link rel="stylesheet" href="public/css/header.css?v=20261027">
-    <link rel="stylesheet" href="public/css/footer.css?v=20261027">
+    <link rel="stylesheet" href="public/css/header.css?v=20261028">
+    <link rel="stylesheet" href="public/css/footer.css?v=20261028">
     <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>?v=20261024"><?php endif; ?>
     <link rel="stylesheet" href="public/css/fuentes.css?v=20261024">
     <title>Zora | Más que calzados, tu esencia</title>
@@ -23,8 +23,7 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
     <nav aria-label="Navegación principal">
         <a href="index.php?pagina=home">Inicio</a>
         <a href="index.php?pagina=productos">Productos</a>
-        <?php if (($_SESSION['usuario_rol'] ?? '') === 'admin'): ?><a href="index.php?pagina=admin-usuarios">Usuarios</a><?php endif; ?>
-        <?php if (in_array(($_SESSION['usuario_rol'] ?? ''), ['admin', 'moderador'], true)): ?><a href="index.php?pagina=admin-productos">Productos admin</a><?php endif; ?>
+        <?php if (in_array(($_SESSION['usuario_rol'] ?? ''), ['admin', 'moderador'], true)): ?><a href="index.php?pagina=admin-panel">Panel de administración</a><?php endif; ?>
         <?php if ($nombreUsuario): ?>
             <span>Hola, <?= htmlspecialchars($nombreUsuario, ENT_QUOTES, 'UTF-8') ?></span>
             <a href="index.php?pagina=mis-pedidos">Mis pedidos</a>

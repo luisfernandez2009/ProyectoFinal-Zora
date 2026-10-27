@@ -1,0 +1,10 @@
+<?php require __DIR__ . '/../assets/header.php'; ?>
+<section class="factura">
+    <div class="factura-cabecera"><div><h1>Zora</h1><p>Factura de compra · copia administrativa</p></div><div><strong>Pedido #<?= (int)$pedido['id'] ?></strong><p>Fecha de pago: <?= htmlspecialchars(date('d/m/Y H:i', strtotime($pago['fecha'])), ENT_QUOTES, 'UTF-8') ?></p><p>Estado: Pagado</p></div></div><hr>
+    <h2>Cliente</h2><p><?= htmlspecialchars($pedido['cliente_nombre'].' '.$pedido['cliente_apellido'], ENT_QUOTES, 'UTF-8') ?><br><?= htmlspecialchars($pedido['cliente_correo'], ENT_QUOTES, 'UTF-8') ?></p>
+    <h2>Datos de entrega</h2><p><?= htmlspecialchars($pedido['nombre_entrega'], ENT_QUOTES, 'UTF-8') ?><br><?= htmlspecialchars($pedido['direccion_entrega'], ENT_QUOTES, 'UTF-8') ?><br><?= htmlspecialchars($pedido['ciudad_entrega'].', '.$pedido['departamento_entrega'], ENT_QUOTES, 'UTF-8') ?><br>Teléfono: <?= htmlspecialchars((string)$pedido['telefono_entrega'], ENT_QUOTES, 'UTF-8') ?></p>
+    <h2>Detalle</h2><div class="tabla-pedidos-contenedor"><table class="tabla-pedidos"><thead><tr><th>Producto</th><th>Talle</th><th>Cantidad</th><th>Precio unitario</th><th>Subtotal</th></tr></thead><tbody><?php foreach ($detalle as $linea): ?><tr><td><?= htmlspecialchars($linea['nombre'].' '.$linea['marca'], ENT_QUOTES, 'UTF-8') ?></td><td><?= (int)$linea['talle'] ?></td><td><?= (int)$linea['cantidad'] ?></td><td>$<?= number_format((float)$linea['precio_unitario'], 2, ',', '.') ?></td><td>$<?= number_format((float)$linea['subtotal'], 2, ',', '.') ?></td></tr><?php endforeach; ?></tbody></table></div>
+    <h2>Total pagado: $<?= number_format((float)$pago['monto'], 2, ',', '.') ?></h2><p>Tarjeta terminada en <?= htmlspecialchars($pago['ultimos4'], ENT_QUOTES, 'UTF-8') ?>. Solo se almacenan los últimos cuatro dígitos.</p>
+    <div class="acciones-factura no-imprimir"><button type="button" onclick="window.print()">Imprimir / guardar como PDF</button><a href="index.php?pagina=admin-pedido-detalle&amp;id=<?= (int)$pedido['id'] ?>">Volver al pedido</a></div>
+</section>
+<?php require __DIR__ . '/../assets/footer.php'; ?>

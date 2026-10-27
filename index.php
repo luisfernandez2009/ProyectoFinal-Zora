@@ -12,6 +12,8 @@ require_once __DIR__ . '/controllers/UsuarioController.php';
 require_once __DIR__ . '/controllers/PedidoController.php';
 require_once __DIR__ . '/controllers/AdminUsuarioController.php';
 require_once __DIR__ . '/controllers/AdminProductoController.php';
+require_once __DIR__ . '/controllers/AdminPanelController.php';
+require_once __DIR__ . '/controllers/AdminPedidoController.php';
 
 // Sincroniza rol y estado con la base en cada petición: una cuenta desactivada
 // pierde el acceso incluso si ya tenía una sesión abierta.
@@ -34,6 +36,24 @@ $usuarioController = new UsuarioController($conexion);
 $pedidoController = new PedidoController($conexion);
 
 switch ($paginaSolicitada) {
+    case 'admin-panel':
+        (new AdminPanelController())->mostrar($conexion);
+        break;
+    case 'admin-pedidos':
+        (new AdminPedidoController($conexion))->listar();
+        break;
+    case 'admin-pedido-detalle':
+        (new AdminPedidoController($conexion))->ver();
+        break;
+    case 'admin-pedido-envio':
+        (new AdminPedidoController($conexion))->cambiarEnvio();
+        break;
+    case 'admin-pedido-factura':
+        (new AdminPedidoController($conexion))->factura();
+        break;
+    case 'admin-informe':
+        (new AdminPedidoController($conexion))->informe();
+        break;
     case 'home':
         $productosDestacados = (new ProductoModel($conexion))->listarProductos(null, null, 4);
         $paginaCss = 'public/css/paginaInicio.css';

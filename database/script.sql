@@ -127,6 +127,8 @@ CREATE TABLE IF NOT EXISTS pedido (
         'rechazado'
     ) NOT NULL DEFAULT 'pendiente',
 
+    estado_envio ENUM('preparando', 'enviado', 'entregado') NOT NULL DEFAULT 'preparando',
+
     nombre_entrega VARCHAR(150) NOT NULL,
     telefono_entrega VARCHAR(30),
     direccion_entrega VARCHAR(255) NOT NULL,
