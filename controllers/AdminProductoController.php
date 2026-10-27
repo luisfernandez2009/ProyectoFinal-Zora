@@ -12,7 +12,7 @@ class AdminProductoController
 
     public function listar(): void
     {
-        $this->exigirAdmin();
+        $this->exigirPermisoProductos();
         $this->prepararCsrf();
         $productos = $this->productoModel->listarTodosAdmin();
         $idActual = (int)$_SESSION['usuario_id'];
@@ -155,13 +155,13 @@ class AdminProductoController
         return 'public/img/productos/' . $nombreArchivo;
     }
 
-    private function exigirAdmin(): void
+    private function exigirPermisoProductos(): void
     {
         if (empty($_SESSION['usuario_id'])) {
             header('Location: index.php?pagina=login');
             exit;
         }
-        if (($_SESSION['usuario_rol'] ?? '') !== 'admin') {
+        if (!in_array(($_SESSION['usuario_rol'] ?? ''), ['admin', 'moderador'], true)) {
             http_response_code(403);
             header('Location: index.php?pagina=home');
             exit;
