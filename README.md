@@ -33,6 +33,7 @@ JavaScript fue utilizado para incorporar interactividad al sitio, implementando 
 - Página de Inicio de sesión.
 - Diseño responsive.
 - Gestión administrativa de usuarios: roles, desactivación y reactivación de cuentas.
+- Roles `cliente`, `moderador` (solo gestión de productos) y `admin` (gestión de usuarios y productos).
 - ABM administrativo de productos, imágenes, stock por talle y baja lógica.
 - Carrito, creación de pedidos, simulación de pagos, historial de compras y factura imprimible.
 
@@ -56,7 +57,7 @@ El proyecto usa `index.php` como punto de entrada único (router):
 1. Iniciá Apache y MySQL en XAMPP.
 2. Verificá en `config/conexion.php` el usuario, contraseña y nombre de base de datos (`zora`).
 3. Importá `database/script.sql` en phpMyAdmin. Si ya tenés tablas con otra estructura, no las borres: primero verificá sus columnas y claves foráneas.
-4. Si la base `zora` ya existía antes de los módulos administrativos y de pago, ejecutá en phpMyAdmin `database/migraciones/2026_stock_minimo.sql` una sola vez si `producto.stock_minimo` todavía no existe, y `database/migraciones/2026_pagos_facturas.sql` una sola vez para agregar los estados y la tabla de pagos. Si importaste el `database/script.sql` completo desde cero, esas estructuras ya están incluidas y no necesitás las migraciones.
+4. Si la base `zora` ya existía antes de los módulos administrativos y de pago, ejecutá en phpMyAdmin `database/migraciones/2026_stock_minimo.sql` una sola vez si `producto.stock_minimo` todavía no existe, `database/migraciones/2026_pagos_facturas.sql` una sola vez para agregar los estados y la tabla de pagos, y `database/migraciones/2026_rol_moderador.sql` una sola vez para habilitar el rol moderador. Si importaste el `database/script.sql` completo desde cero, esas estructuras ya están incluidas y no necesitás las migraciones.
 5. Abrí el proyecto desde `http://localhost/ProyectoFinal-Zora/index.php`.
 6. Registrá una cuenta. Para habilitar el panel administrativo, cambiá el rol de esa cuenta desde phpMyAdmin: `UPDATE usuario SET rol = 'admin' WHERE correo = 'tu-correo@gmail.com';` (reemplazá el correo por el de tu cuenta).
 7. Probá catálogo, filtros, búsqueda, detalle, selección de talle, registro, inicio de sesión, carrito, gestión de usuarios/productos e historial de pedidos. Para finalizar una compra necesitás una cuenta registrada y stock en `producto_talle`.
