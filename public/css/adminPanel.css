@@ -44,3 +44,31 @@
 .panel-resumen span{color:#426663;font-size:.92rem}.panel-resumen strong{font-size:1.6rem;color:#164f4a}
 @media(max-width:1050px){.panel-modulos{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.panel-admin,.admin-pedidos{padding:0 13px;margin-top:24px}.panel-admin-cabecera,.admin-pedidos-cabecera{align-items:flex-start;flex-direction:column}.panel-modulos,.panel-detalle-grid,.panel-resumen{grid-template-columns:1fr}.panel-modulo{min-height:unset}.panel-ultimos,.panel-caja{padding:15px}.panel-alerta{align-items:flex-start;flex-direction:column}.panel-seccion-titulo{align-items:flex-start;flex-direction:column}.panel-filtros{align-items:stretch}.panel-filtros label{min-width:100%}}
+
+/* Mantener el estilo claro y legible de los botones del panel, incluso ante reglas globales. */
+.panel-admin .panel-boton,
+.admin-pedidos .panel-boton,
+.panel-admin a.panel-boton,
+.admin-pedidos a.panel-boton,
+.panel-admin button.panel-boton,
+.admin-pedidos button.panel-boton {
+    background-color: #fff !important;
+    color: #167f78 !important;
+    border: 1px solid #167f78 !important;
+    text-decoration: none !important;
+}
+.panel-admin .panel-boton:hover,
+.admin-pedidos .panel-boton:hover,
+.panel-admin a.panel-boton:hover,
+.admin-pedidos a.panel-boton:hover,
+.panel-admin button.panel-boton:hover,
+.admin-pedidos button.panel-boton:hover {
+    background-color: #eaf7f5 !important;
+    color: #105c57 !important;
+    border-color: #105c57 !important;
+}
+.panel-admin .panel-boton:focus-visible,
+.admin-pedidos .panel-boton:focus-visible {
+    outline: 3px solid rgba(22,127,120,.28);
+    outline-offset: 2px;
+}
