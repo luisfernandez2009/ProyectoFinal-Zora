@@ -29,3 +29,22 @@
 .acciones-factura{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:30px}
 @media print{body{background:#fff!important}.factura{box-shadow:none;margin:0;max-width:none;padding:0}.factura .acciones-factura,header,footer{display:none!important}}
 @media(max-width:600px){.pantalla-pago,.resultado-pago,.mis-pedidos,.detalle-pedido,.factura{padding:0 12px}.resumen-pago,.form-pago,.aviso-simulacion{padding:16px}.factura{padding:18px}}
+
+/* Botones de factura: texto teal visible sin hover, igual al estilo claro del panel. */
+.factura .acciones-factura button,
+.factura .acciones-factura button[type="button"] {
+    background-color: #fff !important;
+    color: #167f78 !important;
+    border: 1px solid #167f78 !important;
+    box-shadow: none;
+}
+.factura .acciones-factura button:hover,
+.factura .acciones-factura button[type="button"]:hover {
+    background-color: #eaf7f5 !important;
+    color: #105c57 !important;
+    border-color: #105c57 !important;
+}
+.factura .acciones-factura button:focus-visible {
+    outline: 3px solid rgba(22,127,120,.28);
+    outline-offset: 2px;
+}
