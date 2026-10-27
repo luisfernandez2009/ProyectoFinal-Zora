@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     apellido VARCHAR(100) NOT NULL,
     correo VARCHAR(190) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    rol ENUM('cliente', 'admin') NOT NULL DEFAULT 'cliente',
+    rol ENUM('cliente', 'moderador', 'admin') NOT NULL DEFAULT 'cliente',
     activo TINYINT(1) NOT NULL DEFAULT 1,
     fecha_registro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
