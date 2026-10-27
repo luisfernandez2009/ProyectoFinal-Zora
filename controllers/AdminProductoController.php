@@ -46,6 +46,7 @@ class AdminProductoController
         }
         $stocks = [];
         foreach ($talles as $talle) { $stocks[(int)$talle['id']] = (int)$talle['stock']; }
+        $imagenesAdicionales = (int)$producto['id'] > 0 ? $this->productoModel->listarImagenesAdmin((int)$producto['id']) : [];
         $error = $_SESSION['error_admin_producto'] ?? null;
         unset($_SESSION['error_admin_producto']);
         $paginaCss = 'public/css/adminProductos.css';
@@ -93,6 +94,7 @@ class AdminProductoController
             if (isset($_FILES['imagen']) && (int)$_FILES['imagen']['error'] !== UPLOAD_ERR_NO_FILE) {
                 $imagen = $this->subirImagen($_FILES['imagen']);
             }
+            $imagenesNuevas = $this->subirImagenesAdicionales($_FILES['imagenes'] ?? []);
             $datos = [
                 'nombre'=>$nombre, 'marca'=>$marca, 'descripcion'=>$descripcion,
                 'precio'=>(float)$precio, 'imagen'=>$imagen, 'categoria_id'=>(int)$categoriaId,
@@ -100,10 +102,14 @@ class AdminProductoController
             ];
             if ($id > 0) {
                 $this->productoModel->actualizarAdmin((int)$id, $datos, $stocks);
+                $idProductoGuardado = (int)$id;
                 $mensaje = 'Producto actualizado correctamente.';
             } else {
-                $this->productoModel->crearAdmin($datos, $stocks);
+                $idProductoGuardado = $this->productoModel->crearAdmin($datos, $stocks);
                 $mensaje = 'Producto creado correctamente.';
+            }
+            if ($imagenesNuevas) {
+                $this->productoModel->agregarImagenesAdmin($idProductoGuardado, $imagenesNuevas);
             }
             $_SESSION['mensaje_admin_producto'] = $mensaje;
             header('Location: index.php?pagina=admin-productos');
@@ -153,6 +159,24 @@ class AdminProductoController
             throw new RuntimeException('No se pudo guardar la imagen.');
         }
         return 'public/img/productos/' . $nombreArchivo;
+    }
+
+    private function subirImagenesAdicionales(array $archivos): array
+    {
+        if (!isset($archivos['name']) || !is_array($archivos['name'])) return [];
+        $rutas = [];
+        foreach ($archivos['name'] as $i => $nombre) {
+            if (($archivos['error'][$i] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE || $nombre === '') continue;
+            $archivo = [
+                'name' => $nombre,
+                'type' => $archivos['type'][$i] ?? '',
+                'tmp_name' => $archivos['tmp_name'][$i] ?? '',
+                'error' => $archivos['error'][$i] ?? UPLOAD_ERR_NO_FILE,
+                'size' => $archivos['size'][$i] ?? 0,
+            ];
+            $rutas[] = $this->subirImagen($archivo);
+        }
+        return $rutas;
     }
 
     private function exigirPermisoProductos(): void
