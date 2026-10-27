@@ -24,7 +24,7 @@ class AdminProductoController
 
     public function formulario(): void
     {
-        $this->exigirAdmin();
+        $this->exigirPermisoProductos();
         $this->prepararCsrf();
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         $producto = $id ? $this->productoModel->obtenerParaAdmin((int)$id) : null;
@@ -54,7 +54,7 @@ class AdminProductoController
 
     public function guardar(): void
     {
-        $this->exigirAdmin();
+        $this->exigirPermisoProductos();
         $this->validarPeticion();
         $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
         $nombre = trim((string)($_POST['nombre'] ?? ''));
@@ -115,7 +115,7 @@ class AdminProductoController
 
     public function cambiarEstado(): void
     {
-        $this->exigirAdmin();
+        $this->exigirPermisoProductos();
         $this->validarPeticion();
         $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
         $activo = filter_var($_POST['activo'] ?? null, FILTER_VALIDATE_INT);
