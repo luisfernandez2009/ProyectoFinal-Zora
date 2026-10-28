@@ -1,6 +1,7 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
 <section class="admin-pedidos">
-    <div class="admin-pedidos-cabecera"><div><p class="panel-eyebrow">ADMINISTRACIÓN</p><h1>Informe de transacciones</h1><p>Las ventas contabilizadas son únicamente los pedidos pagados.</p></div><a class="boton-volver-panel" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></div>
+    <p class="acciones-superiores"><a class="boton-volver-panel" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></p>
+    <div class="admin-pedidos-cabecera"><div><p class="panel-eyebrow">ADMINISTRACIÓN</p><h1>Informe de transacciones</h1><p>Las ventas contabilizadas son únicamente los pedidos pagados.</p></div></div>
     <form class="panel-filtros" action="index.php" method="get"><input type="hidden" name="pagina" value="admin-informe"><label>Desde<input type="date" name="desde" value="<?= htmlspecialchars($desde, ENT_QUOTES, 'UTF-8') ?>" required></label><label>Hasta<input type="date" name="hasta" value="<?= htmlspecialchars($hasta, ENT_QUOTES, 'UTF-8') ?>" required></label><button class="panel-boton" type="submit">Generar informe</button></form>
     <?php if ($errores): ?><div class="panel-mensaje panel-error"><?php foreach ($errores as $error): ?><p><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></p><?php endforeach; ?></div><?php else: ?>
     <p>Período: <strong><?= htmlspecialchars(date('d/m/Y', strtotime($desde)), ENT_QUOTES, 'UTF-8') ?></strong> al <strong><?= htmlspecialchars(date('d/m/Y', strtotime($hasta)), ENT_QUOTES, 'UTF-8') ?></strong></p>
