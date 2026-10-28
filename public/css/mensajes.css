@@ -28,3 +28,21 @@
 .mensaje-estado.respondido{background:#dff5e7;color:#17643a}
 .mensajes-pagina .acciones-superiores{margin:0 0 18px}
 @media(max-width:650px){.mensajes-pagina{margin:24px auto 45px;padding:0 14px}.mensajes-formulario{padding:16px}.mensaje-caja,.mensaje-respuesta{padding:15px}}
+
+
+/* Asegurar que los enlaces de mensajes mantengan texto y fondo contrastados ante estilos globales. */
+.mensajes-pagina a.mensajes-boton,
+.mensajes-pagina a.mensajes-boton:visited {
+    background-color: #167f78 !important;
+    color: #fff !important;
+    border-color: #167f78 !important;
+    opacity: 1;
+    -webkit-text-fill-color: #fff;
+}
+.mensajes-pagina a.mensajes-boton:hover,
+.mensajes-pagina a.mensajes-boton:focus-visible {
+    background-color: #105c57 !important;
+    color: #fff !important;
+    border-color: #105c57 !important;
+    -webkit-text-fill-color: #fff;
+}
