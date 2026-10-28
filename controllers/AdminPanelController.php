@@ -10,6 +10,8 @@ class AdminPanelController
         $pedidoModel = new PedidoModel($conexion);
         $mensajeModel = new MensajeModel($conexion);
         $mensajesSinResponder = $mensajeModel->contarSinResponder();
+        $mensajeModel = new MensajeModel($conexion);
+        $mensajesSinResponder = $mensajeModel->contarSinResponder();
         $ultimosPedidos = $pedidoModel->listarAdmin(['limite' => 5]);
         $pedidosPorEnviar = $pedidoModel->listarAdmin(['estado' => 'pagado', 'estado_envio' => 'preparando']);
         $paginaCss = 'public/css/adminPanel.css';
