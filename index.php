@@ -7,6 +7,7 @@ require_once __DIR__ . '/models/ProductoModel.php';
 require_once __DIR__ . '/models/UsuarioModel.php';
 require_once __DIR__ . '/models/PedidoModel.php';
 require_once __DIR__ . '/models/PagoModel.php';
+require_once __DIR__ . '/models/MensajeModel.php';
 require_once __DIR__ . '/controllers/ProductoController.php';
 require_once __DIR__ . '/controllers/UsuarioController.php';
 require_once __DIR__ . '/controllers/PedidoController.php';
@@ -14,6 +15,8 @@ require_once __DIR__ . '/controllers/AdminUsuarioController.php';
 require_once __DIR__ . '/controllers/AdminProductoController.php';
 require_once __DIR__ . '/controllers/AdminPanelController.php';
 require_once __DIR__ . '/controllers/AdminPedidoController.php';
+require_once __DIR__ . '/controllers/MensajeController.php';
+require_once __DIR__ . '/controllers/AdminMensajeController.php';
 
 // Sincroniza rol y estado con la base en cada petición: una cuenta desactivada
 // pierde el acceso incluso si ya tenía una sesión abierta.
@@ -36,6 +39,24 @@ $usuarioController = new UsuarioController($conexion);
 $pedidoController = new PedidoController($conexion);
 
 switch ($paginaSolicitada) {
+    case 'contacto':
+        (new MensajeController($conexion))->mostrarFormulario();
+        break;
+    case 'mensaje-enviar':
+        (new MensajeController($conexion))->enviar();
+        break;
+    case 'mis-mensajes':
+        (new MensajeController($conexion))->misMensajes();
+        break;
+    case 'admin-mensajes':
+        (new AdminMensajeController($conexion))->listar();
+        break;
+    case 'admin-mensaje-detalle':
+        (new AdminMensajeController($conexion))->ver();
+        break;
+    case 'admin-mensaje-responder':
+        (new AdminMensajeController($conexion))->responder();
+        break;
     case 'admin-panel':
         (new AdminPanelController())->mostrar($conexion);
         break;

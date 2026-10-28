@@ -37,6 +37,7 @@ JavaScript fue utilizado para incorporar interactividad al sitio, implementando 
 - Panel de administración centralizado con gestión de productos, usuarios (solo admin), pedidos, estados de envío, facturas e informe de transacciones.
 - ABM administrativo de productos, imágenes, stock por talle y baja lógica.
 - Carrito, creación de pedidos, simulación de pagos, historial de compras y factura imprimible.
+- Mensajería interna entre clientes y tienda: consultas privadas por usuario, bandeja administrativa con filtros, respuestas no sobrescribibles y contador de pendientes en el panel.
 
 ## Autor
 
@@ -58,7 +59,7 @@ El proyecto usa `index.php` como punto de entrada único (router):
 1. Iniciá Apache y MySQL en XAMPP.
 2. Verificá en `config/conexion.php` el usuario, contraseña y nombre de base de datos (`zora`).
 3. Importá `database/script.sql` en phpMyAdmin. Si ya tenés tablas con otra estructura, no las borres: primero verificá sus columnas y claves foráneas.
-4. Si la base `zora` ya existía antes de los módulos administrativos y de pago, ejecutá las migraciones necesarias una sola vez: `2026_stock_minimo.sql` si falta `producto.stock_minimo`, `2026_pagos_facturas.sql` para pagos, `2026_rol_moderador.sql` para el rol moderador y `2026_stock_galeria_admin.sql` para crear la tabla de galería si falta, cargar talles 38–45 y asignar 5 unidades a las combinaciones de producto/talle que todavía no tengan stock registrado, y `2026_admin_pedidos.sql` para agregar el estado de envío separado. Estas migraciones conservan los stocks ya existentes. Si importaste el `database/script.sql` completo desde cero, las tablas ya están incluidas y no necesitás ejecutar esa migración de galería/stock.
+4. Si la base `zora` ya existía antes de los módulos administrativos y de pago, ejecutá las migraciones necesarias una sola vez: `2026_stock_minimo.sql` si falta `producto.stock_minimo`, `2026_pagos_facturas.sql` para pagos, `2026_rol_moderador.sql` para el rol moderador y `2026_stock_galeria_admin.sql` para crear la tabla de galería si falta, cargar talles 38–45 y asignar 5 unidades a las combinaciones de producto/talle que todavía no tengan stock registrado, y `2026_admin_pedidos.sql` para agregar el estado de envío separado, y `2026_mensajeria_interna.sql` para crear la tabla de consultas y respuestas. Estas migraciones conservan los stocks ya existentes. Si importaste el `database/script.sql` completo desde cero, las tablas ya están incluidas y no necesitás ejecutar esa migración de galería/stock.
 5. Abrí el proyecto desde `http://localhost/ProyectoFinal-Zora/index.php`.
 6. Registrá una cuenta. Para habilitar el panel administrativo, cambiá el rol de esa cuenta desde phpMyAdmin: `UPDATE usuario SET rol = 'admin' WHERE correo = 'tu-correo@gmail.com';` (reemplazá el correo por el de tu cuenta).
 7. Probá catálogo, filtros, búsqueda, detalle, selección de talle, registro, inicio de sesión, carrito, gestión de usuarios/productos e historial de pedidos. Para finalizar una compra necesitás una cuenta registrada y stock en `producto_talle`.

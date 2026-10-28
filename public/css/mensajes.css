@@ -1,0 +1,30 @@
+.mensajes-pagina{max-width:1100px;margin:36px auto 70px;padding:0 22px;box-sizing:border-box;color:#263b39}
+.mensajes-pagina h1{color:#173f3d;font-size:clamp(1.9rem,3vw,2.5rem);margin:5px 0 12px}
+.mensajes-pagina>p{line-height:1.6}
+.mensajes-eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.12em;color:#17847d;margin-bottom:4px}
+.mensajes-formulario{display:flex;flex-direction:column;gap:9px;max-width:760px;margin:24px 0;padding:24px;border:1px solid #dce9e6;border-radius:14px;background:#fff;box-shadow:0 5px 18px rgba(20,60,55,.06)}
+.mensajes-formulario label{font-weight:750;color:#294b47;margin-top:5px}
+.mensajes-formulario input[type=text],.mensajes-formulario textarea{width:100%;box-sizing:border-box;padding:12px 13px;border:1px solid #cbdad7;border-radius:8px;background:#fff;color:#243b38;font:inherit;line-height:1.5}
+.mensajes-formulario input:focus,.mensajes-formulario textarea:focus{outline:3px solid rgba(22,127,120,.18);border-color:#167f78}
+.mensajes-formulario textarea{resize:vertical;min-height:140px}
+.mensajes-boton,.mensajes-boton-secundario{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;padding:11px 16px;border:1px solid #167f78;border-radius:8px;background:#167f78;color:#fff!important;text-decoration:none!important;font:inherit;font-weight:750;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.mensajes-boton:hover{background:#105c57;transform:translateY(-1px)}
+.mensajes-boton-secundario{background:#fff;color:#167f78!important}
+.mensajes-boton-secundario:hover{background:#eaf7f5}
+.mensajes-aviso{padding:14px 17px;border-radius:9px;margin:18px 0;line-height:1.5}
+.mensajes-aviso.exito{background:#e3f6eb;color:#175c38;border:1px solid #bfe8cf}
+.mensajes-aviso.error{background:#fff0ef;color:#942f2b;border:1px solid #ffd4d0}
+.mensajes-aviso ul{margin:0;padding-left:22px}
+.mensajes-vacio{padding:24px;border:1px dashed #cbdad7;border-radius:12px;background:#f7faf9;color:#647572;text-align:center;margin:22px 0}
+.mensaje-caja,.mensaje-respuesta{padding:20px;margin:18px 0;border:1px solid #dce9e6;border-radius:12px;background:#fff;box-shadow:0 4px 14px rgba(20,60,55,.04);overflow-wrap:anywhere}
+.mensaje-caja h2,.mensaje-respuesta h2{font-size:1.2rem;color:#173f3d;margin:0 0 10px}
+.mensaje-caja-cabecera{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.mensaje-fecha{font-size:.88rem;color:#6a7b78;margin:8px 0 14px}
+.mensaje-texto,.mensaje-respuesta>div{line-height:1.7;white-space:normal}
+.mensaje-respuesta{background:#edf8f6;border-color:#c6e8e2}
+.mensaje-respuesta strong{color:#145e58}
+.mensaje-estado{display:inline-flex;padding:5px 10px;border-radius:20px;font-size:.82rem;font-weight:750;white-space:nowrap}
+.mensaje-estado.pendiente{background:#fff1cf;color:#805a09}
+.mensaje-estado.respondido{background:#dff5e7;color:#17643a}
+.mensajes-pagina .acciones-superiores{margin:0 0 18px}
+@media(max-width:650px){.mensajes-pagina{margin:24px auto 45px;padding:0 14px}.mensajes-formulario{padding:16px}.mensaje-caja,.mensaje-respuesta{padding:15px}}
