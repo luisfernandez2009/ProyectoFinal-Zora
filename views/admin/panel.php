@@ -9,10 +9,6 @@
         <div class="panel-alerta"><strong><?= (int)$mensajesSinResponder ?> mensaje(s) de clientes esperan respuesta.</strong><a href="index.php?pagina=admin-mensajes&amp;filtro=sin_responder">Revisar mensajes →</a></div>
     <?php endif; ?>
 
-    <?php if ($mensajesSinResponder > 0): ?>
-        <div class="panel-alerta"><strong><?= (int)$mensajesSinResponder ?> mensaje(s) de clientes esperan respuesta.</strong><a href="index.php?pagina=admin-mensajes&amp;filtro=sin_responder">Revisar mensajes →</a></div>
-    <?php endif; ?>
-
     <?php if (!empty($pedidosPorEnviar)): ?>
         <div class="panel-alerta"><strong><?= count($pedidosPorEnviar) ?> pedido(s) pagado(s) esperan preparación.</strong><a href="index.php?pagina=admin-pedidos&amp;estado=pagado&amp;estado_envio=preparando">Revisar pedidos →</a></div>
     <?php endif; ?>
@@ -34,11 +30,6 @@
             <div class="panel-modulo-icono">🧾</div><h2>Gestionar pedidos</h2>
             <p>Consultar compras, revisar pagos y datos de entrega, avanzar envíos y abrir facturas.</p>
             <a class="panel-boton" href="index.php?pagina=admin-pedidos">Abrir pedidos</a>
-        </article>
-        <article class="panel-modulo">
-            <div class="panel-modulo-icono">💬</div><h2>Mensajes</h2>
-            <p>Leer las consultas de los clientes y responderlas desde la tienda.</p>
-            <a class="panel-boton" href="index.php?pagina=admin-mensajes">Ver mensajes</a>
         </article>
         <article class="panel-modulo">
             <div class="panel-modulo-icono">💬</div><h2>Mensajes</h2>
