@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
 <section class="admin-pedidos admin-pedido-detalle">
-    <a class="panel-volver" href="index.php?pagina=admin-pedidos">← Volver a pedidos</a>
+    <p class="acciones-superiores"><a class="boton-volver-panel" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></p>
     <div class="admin-pedidos-cabecera"><div><p class="panel-eyebrow">DETALLE DE COMPRA</p><h1>Pedido #<?= (int)$pedido['id'] ?></h1><p>Registrado el <?= htmlspecialchars(date('d/m/Y H:i', strtotime($pedido['fecha_pedido'])), ENT_QUOTES, 'UTF-8') ?></p></div><span class="panel-estado estado-<?= htmlspecialchars($pedido['estado'], ENT_QUOTES, 'UTF-8') ?>"><?= htmlspecialchars(ucfirst($pedido['estado']), ENT_QUOTES, 'UTF-8') ?></span></div>
     <?php if ($mensaje): ?><p class="panel-mensaje"><?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
     <div class="panel-detalle-grid">
