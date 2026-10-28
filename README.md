@@ -38,6 +38,7 @@ JavaScript fue utilizado para incorporar interactividad al sitio, implementando 
 - ABM administrativo de productos, imágenes, stock por talle y baja lógica.
 - Carrito, creación de pedidos, simulación de pagos, historial de compras y factura imprimible.
 - Mensajería interna entre clientes y tienda: consultas privadas por usuario, bandeja administrativa con filtros, respuestas no sobrescribibles y contador de pendientes en el panel.
+- Notificaciones por correo SMTP mediante PHPMailer: bienvenida al registrarse, confirmación de compra aprobada, aviso al responder una consulta y aviso cuando el pedido pasa a enviado.
 
 ## Autor
 
@@ -70,3 +71,14 @@ El stock y los talles agregados por el script son datos de demostración para de
 
 El pago es una simulación educativa, no una pasarela real. Para simular un pago aprobado, usá `4242 4242 4242 4242`, una fecha de vencimiento futura y un CVV de 3 o 4 dígitos. Una tarjeta de prueba válida que no termine en `4242` se simula como rechazada. No ingreses ni uses datos de tarjetas reales. El sistema solo guarda los últimos cuatro dígitos y nunca persiste el número completo, el vencimiento ni el CVV.
 
+
+
+### Configurar notificaciones por correo
+
+1. Verificá que PHPMailer esté en `libs/PHPMailer/` y que contenga `Exception.php`, `PHPMailer.php` y `SMTP.php`.
+2. Copiá `config/correo_config_ejemplo.php` a `config/correo_config.php` en tu computadora.
+3. En `config/correo_config.php`, completá el usuario del correo y su contraseña de aplicación SMTP. Para Gmail, usá una contraseña de aplicación, no la contraseña normal de la cuenta.
+4. `config/correo_config.php` está excluido en `.gitignore`: no lo subas a GitHub. El archivo de ejemplo sí se versiona y no contiene credenciales reales.
+5. Si el servidor de correo falla o falta la configuración local, la compra, el registro o la respuesta se mantienen guardados; el fallo de correo se registra en el log de errores de PHP/Apache.
+
+Los correos se envían después de completar la operación correspondiente. El sitio no envía correo por un intento de pago rechazado.

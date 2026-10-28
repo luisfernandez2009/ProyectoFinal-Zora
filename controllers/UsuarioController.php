@@ -47,6 +47,14 @@ class UsuarioController
             $_SESSION['usuario_id'] = (int)$usuario['id'];
             $_SESSION['usuario_nombre'] = $usuario['nombre'];
             $_SESSION['usuario_rol'] = $usuario['rol'];
+            $nombreSeguro = htmlspecialchars((string)$usuario['nombre'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            enviarCorreo(
+                (string)$usuario['correo'],
+                (string)$usuario['nombre'],
+                '¡Bienvenido/a a Zora!',
+                '<p>Hola ' . $nombreSeguro . ', tu cuenta fue creada correctamente.</p>'
+                . '<p>Ya podés iniciar sesión y empezar a comprar en Zora.</p>'
+            );
             header('Location: index.php?pagina=home'); exit;
         } catch (Throwable $e) {
             $_SESSION['error_formulario'] = 'No se pudo crear la cuenta. Revisá los datos e intentá nuevamente.';

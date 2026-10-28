@@ -58,7 +58,19 @@ class AdminMensajeController
             require __DIR__ . '/../views/admin/mensaje_detalle.php';
             return;
         }
-        if ($this->mensajeModel->responder((int)$id, $respuesta)) $this->redirigir('admin-mensaje-detalle&id=' . (int)$id, 'respondido');
+        if ($this->mensajeModel->responder((int)$id, $respuesta)) {
+            $nombreSeguro = htmlspecialchars((string)$mensaje['cliente_nombre'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $respuestaSegura = nl2br(htmlspecialchars($respuesta, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
+            enviarCorreo(
+                (string)$mensaje['cliente_correo'],
+                (string)$mensaje['cliente_nombre'],
+                'Respondimos tu consulta: ' . (string)$mensaje['asunto'],
+                '<p>Hola ' . $nombreSeguro . ', respondimos tu consulta.</p>'
+                . '<blockquote>' . $respuestaSegura . '</blockquote>'
+                . '<p>También podés verla en "Mis mensajes" dentro del sitio.</p>'
+            );
+            $this->redirigir('admin-mensaje-detalle&id=' . (int)$id, 'respondido');
+        }
         $this->redirigir('admin-mensaje-detalle&id=' . (int)$id, 'ya_respondido');
     }
 

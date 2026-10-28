@@ -5,8 +5,9 @@ class PedidoController
 {
     private PedidoModel $pedidoModel;
     private PagoModel $pagoModel;
+    private mysqli $conexion;
     private array $departamentos = ['Artigas', 'Canelones', 'Cerro Largo', 'Colonia', 'Durazno', 'Flores', 'Florida', 'Lavalleja', 'Maldonado', 'Montevideo', 'Paysandú', 'Río Negro', 'Rivera', 'Rocha', 'Salto', 'San José', 'Soriano', 'Tacuarembó', 'Treinta y Tres'];
-    public function __construct(mysqli $conexion) { $this->pedidoModel = new PedidoModel($conexion); $this->pagoModel = new PagoModel($conexion); }
+    public function __construct(mysqli $conexion) { $this->conexion = $conexion; $this->pedidoModel = new PedidoModel($conexion); $this->pagoModel = new PagoModel($conexion); }
 
     public function confirmarPedido(): void
     {
@@ -123,6 +124,22 @@ class PedidoController
                     substr($numero, -4),
                     $resultado
                 );
+                if ($resultado === 'aprobado') {
+                    $usuario = (new UsuarioModel($this->conexion))->obtenerPorIdAdmin((int)$pedido['usuario_id']);
+                    if ($usuario) {
+                        $nombreCompleto = trim((string)$usuario['nombre'] . ' ' . (string)$usuario['apellido']);
+                        $nombreSeguro = htmlspecialchars($nombreCompleto, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                        $totalSeguro = htmlspecialchars(number_format((float)$pedido['total'], 2, ',', '.'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+                        enviarCorreo(
+                            (string)$usuario['correo'],
+                            $nombreCompleto,
+                            'Confirmación de tu pedido N.º ' . (int)$pedido['id'],
+                            '<p>Hola ' . $nombreSeguro . ', recibimos tu pago.</p>'
+                            . '<p>Tu pedido N.º ' . (int)$pedido['id'] . ' por $ ' . $totalSeguro . ' fue confirmado.</p>'
+                            . '<p>Podés consultar el estado desde la sección "Mis pedidos" de Zora.</p>'
+                        );
+                    }
+                }
                 header('Location: index.php?pagina=pago-resultado&id=' . (int)$pedido['id']);
                 exit;
             }

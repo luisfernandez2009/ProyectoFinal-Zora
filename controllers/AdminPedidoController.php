@@ -55,6 +55,22 @@ class AdminPedidoController
         $siguiente = $this->siguienteEnvio[$actual] ?? null;
         if ($pedido['estado'] !== 'pagado' || !$siguiente) $this->redirigir('admin-pedido-detalle&id=' . (int)$id, 'Este avance de envío no está permitido.');
         if (!$this->pedidoModel->cambiarEstadoEnvio((int)$id, $actual, $siguiente)) $this->redirigir('admin-pedido-detalle&id=' . (int)$id, 'El estado cambió o no se pudo guardar. Actualizá la página.');
+        if ($siguiente === 'enviado') {
+            $nombreSeguro = htmlspecialchars((string)$pedido['cliente_nombre'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $totalSeguro = htmlspecialchars(number_format((float)$pedido['total'], 2, ',', '.'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $direccion = htmlspecialchars((string)$pedido['direccion_entrega'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $ciudad = htmlspecialchars((string)$pedido['ciudad_entrega'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            $departamento = htmlspecialchars((string)$pedido['departamento_entrega'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+            enviarCorreo(
+                (string)$pedido['cliente_correo'],
+                (string)$pedido['cliente_nombre'],
+                'Tu pedido N.º ' . (int)$id . ' está en camino',
+                '<p>Hola ' . $nombreSeguro . ', ¡tu pedido ya fue enviado!</p>'
+                . '<p>Pedido N.º ' . (int)$id . ' por $ ' . $totalSeguro . '.</p>'
+                . '<p>Lo enviamos a:<br>' . $direccion . '<br>' . $ciudad . ', ' . $departamento . '</p>'
+                . '<p>Podés ver el estado en "Mis pedidos" dentro del sitio.</p>'
+            );
+        }
         $this->redirigir('admin-pedido-detalle&id=' . (int)$id, 'Estado de envío actualizado.');
     }
 
