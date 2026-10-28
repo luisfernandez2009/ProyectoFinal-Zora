@@ -1,6 +1,7 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
 <section class="admin-pedidos">
-    <div class="admin-pedidos-cabecera"><div><p class="panel-eyebrow">ADMINISTRACIÓN</p><h1>Pedidos</h1><p>Consultá las compras, los pagos y el avance de cada envío.</p></div><a class="boton-volver-panel" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></div>
+    <p class="acciones-superiores"><a class="boton-volver-panel" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></p>
+    <div class="admin-pedidos-cabecera"><div><p class="panel-eyebrow">ADMINISTRACIÓN</p><h1>Pedidos</h1><p>Consultá las compras, los pagos y el avance de cada envío.</p></div></div>
     <?php if ($mensaje): ?><p class="panel-mensaje"><?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
     <form class="panel-filtros" action="index.php" method="get">
         <input type="hidden" name="pagina" value="admin-pedidos">
