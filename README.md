@@ -75,7 +75,7 @@ El pago es una simulación educativa, no una pasarela real. Para simular un pago
 
 ### Configurar notificaciones por correo
 
-1. Verificá que PHPMailer esté en `lib/PHPMailer/` y que contenga `Exception.php`, `PHPMailer.php` y `SMTP.php`.
+1. Verificá que PHPMailer esté en `libs/PHPMailer/` y que contenga `Exception.php`, `PHPMailer.php` y `SMTP.php`.
 2. Copiá `config/correo_config_ejemplo.php` a `config/correo_config.php` en tu computadora.
 3. En `config/correo_config.php`, completá el usuario del correo y su contraseña de aplicación SMTP. Para Gmail, usá una contraseña de aplicación, no la contraseña normal de la cuenta.
 4. `config/correo_config.php` está excluido en `.gitignore`: no lo subas a GitHub. El archivo de ejemplo sí se versiona y no contiene credenciales reales.
