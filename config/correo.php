@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require_once __DIR__ . '/../lib/PHPMailer/Exception.php';
-require_once __DIR__ . '/../lib/PHPMailer/PHPMailer.php';
-require_once __DIR__ . '/../lib/PHPMailer/SMTP.php';
+require_once __DIR__ . '/../libs/PHPMailer/Exception.php';
+require_once __DIR__ . '/../libs/PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../libs/PHPMailer/SMTP.php';
 
 /**
  * Envía un correo HTML. Si la configuración o el servidor SMTP fallan,
