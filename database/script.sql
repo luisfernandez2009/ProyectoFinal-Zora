@@ -710,7 +710,7 @@ CREATE TABLE IF NOT EXISTS mensaje (
     respuesta VARCHAR(1000) NULL,
     fecha_respuesta DATETIME NULL,
     INDEX idx_mensaje_usuario_fecha (id_usuario, fecha),
-    INDEX idx_mensaje_respuesta_fecha (respuesta, fecha),
+    INDEX idx_mensaje_respuesta_fecha (respuesta(100), fecha),
     CONSTRAINT fk_mensaje_usuario
         FOREIGN KEY (id_usuario) REFERENCES usuario(id)
         ON UPDATE CASCADE ON DELETE CASCADE
