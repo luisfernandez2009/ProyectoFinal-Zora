@@ -1,5 +1,6 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
 <section class="admin-usuarios">
+    <p class="acciones-superiores"><a class="boton-admin" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></p>
     <h1>Gestión de usuarios</h1>
     <p>Administrá roles y estados de las cuentas. Las cuentas desactivadas y sus pedidos se conservan en el sistema.</p>
     <?php if (!empty($mensaje)): ?><p class="aviso-admin" role="status"><?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
