@@ -1,8 +1,5 @@
 # Zora
 
-Está es la versión de la página web para la primera entrega del proyecto, es de una zapatería (la cual creamos entre mis compañeros de equipo y yo), el apartado del código de la web lo hice yo, mientras que mis compañeros me ayudaron a elegir los colores y el logo de la página.
-Las demás personas de mi equipo no participaron mucho más en el código porque repartimos las materias del proyecto en 1 para cada uno (Por ejemplo yo elegí Programación Full Stack, mientras que Diego Berón eligió Sistema Operativos, José Posse eligió Ingeniería de Software y Ismael Cabrera eligió Inglés y Filosofía).
-
 ## Tecnologías utilizadas
 
 - HTML5
