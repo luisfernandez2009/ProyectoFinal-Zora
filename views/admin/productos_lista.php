@@ -1,5 +1,6 @@
 <?php require __DIR__ . '/../assets/header.php'; ?>
 <section class="admin-productos">
+    <p class="acciones-superiores"><a class="boton-admin" href="index.php?pagina=admin-panel">← Volver al panel de administración</a></p>
     <h1>Administración de productos</h1>
     <p>Creá, editá, desactivá y reactivá productos. El stock se administra por talle.</p>
     <?php if (!empty($mensaje)): ?><p class="aviso-admin" role="status"><?= htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8') ?></p><?php endif; ?>
