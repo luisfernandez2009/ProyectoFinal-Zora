@@ -10,7 +10,7 @@ $nombreUsuario = $_SESSION['usuario_nombre'] ?? null;
     <link rel="icon" href="public/img/logos/favicon.png" type="image/png">
     <link rel="stylesheet" href="public/css/header.css?v=20261029">
     <link rel="stylesheet" href="public/css/footer.css?v=20261029">
-    <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>?v=20261031"><?php endif; ?>
+    <?php if ($paginaCss): ?><link rel="stylesheet" href="<?= htmlspecialchars($paginaCss, ENT_QUOTES, 'UTF-8') ?>?v=20261032"><?php endif; ?>
     <link rel="stylesheet" href="public/css/fuentes.css?v=20261024">
     <title>Zora | Más que calzados, tu esencia</title>
 </head>
