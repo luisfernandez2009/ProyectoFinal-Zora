@@ -6,7 +6,7 @@ class PedidoModel
     private mysqli $conexion;
     public function __construct(mysqli $conexion) { $this->conexion = $conexion; }
 
-    /** Guarda pedido y detalles en una única transacción. El precio siempre se obtiene de BD. */
+    /** Guarda pedido pendiente y detalles sin reservar stock; el precio siempre sale de BD. */
     public function crearPedido(int $usuarioId, array $datosEntrega, array $items): int
     {
         if (!$items) throw new RuntimeException('El carrito está vacío.');
@@ -24,7 +24,7 @@ class PedidoModel
                 $stmt = $this->conexion->prepare(
                     "SELECT p.nombre, p.precio, pt.stock FROM producto p
                      INNER JOIN producto_talle pt ON pt.producto_id = p.id
-                     WHERE p.id = ? AND pt.talle_id = ? AND p.activo = 1 FOR UPDATE"
+                     WHERE p.id = ? AND pt.talle_id = ? AND p.activo = 1"
                 );
                 $stmt->bind_param('ii', $productoId, $talleId); $stmt->execute();
                 $producto = $stmt->get_result()->fetch_assoc(); $stmt->close();
@@ -52,13 +52,6 @@ class PedidoModel
                 );
                 $stmt->bind_param('iiiid', $pedidoId, $item['producto_id'], $item['talle_id'], $item['cantidad'], $item['precio']);
                 $stmt->execute(); $stmt->close();
-                $stmt = $this->conexion->prepare(
-                    "UPDATE producto_talle SET stock = stock - ? WHERE producto_id = ? AND talle_id = ? AND stock >= ?"
-                );
-                $stmt->bind_param('iiii', $item['cantidad'], $item['producto_id'], $item['talle_id'], $item['cantidad']);
-                $stmt->execute();
-                if ($stmt->affected_rows !== 1) { $stmt->close(); throw new RuntimeException('El stock cambió. Actualizá el carrito e intentá de nuevo.'); }
-                $stmt->close();
             }
             $this->conexion->commit();
             return $pedidoId;
