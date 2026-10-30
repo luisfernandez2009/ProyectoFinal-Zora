@@ -118,13 +118,24 @@ class PedidoController
                 // Simulación didáctica: la tarjeta de prueba terminada en 4242 se aprueba.
                 // No se guardan el número completo, vencimiento ni CVV.
                 $resultado = substr($numero, -4) === '4242' ? 'aprobado' : 'rechazado';
-                $this->pagoModel->registrarIntento(
-                    (int)$pedido['id'],
-                    (float)$pedido['total'],
-                    substr($numero, -4),
-                    $resultado
-                );
-                if ($resultado === 'aprobado') {
+                try {
+                    $registrado = $this->pagoModel->registrarIntento(
+                        (int)$pedido['id'],
+                        (float)$pedido['total'],
+                        substr($numero, -4),
+                        $resultado
+                    );
+                } catch (RuntimeException $e) {
+                    $errores[] = $e->getMessage();
+                    $registrado = false;
+                } catch (Throwable $e) {
+                    $errores[] = 'No se pudo procesar el pago. Intentá nuevamente.';
+                    $registrado = false;
+                }
+                if (!$registrado && !$errores) {
+                    $errores[] = 'Este pedido ya no admite pagos. Actualizá la página.';
+                }
+                if ($registrado && $resultado === 'aprobado') {
                     $usuario = (new UsuarioModel($this->conexion))->obtenerPorIdAdmin((int)$pedido['usuario_id']);
                     if ($usuario) {
                         $nombreCompleto = trim((string)$usuario['nombre'] . ' ' . (string)$usuario['apellido']);
@@ -140,8 +151,10 @@ class PedidoController
                         );
                     }
                 }
-                header('Location: index.php?pagina=pago-resultado&id=' . (int)$pedido['id']);
-                exit;
+                if ($registrado) {
+                    header('Location: index.php?pagina=pago-resultado&id=' . (int)$pedido['id']);
+                    exit;
+                }
             }
         }
 
